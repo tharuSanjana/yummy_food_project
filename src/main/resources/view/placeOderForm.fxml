@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.PlaceOderFormController">
+   <children>
+      <Label layoutX="380.0" layoutY="31.0" prefHeight="57.0" prefWidth="178.0" text="Place Order">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblPlaceOrder" layoutX="191.0" layoutY="109.0" prefHeight="498.0" prefWidth="943.0">
+         <columns>
+            <TableColumn fx:id="colOrderId" prefWidth="111.99996948242188" text="Order ID" />
+            <TableColumn fx:id="colCustomerId" prefWidth="128.80006408691406" text="Customer ID" />
+            <TableColumn fx:id="colCustomerName" prefWidth="149.60003662109375" text="Customer name" />
+            <TableColumn fx:id="colPaymentId" prefWidth="125.5999755859375" text="Payment ID" />
+            <TableColumn fx:id="colDate" prefWidth="135.20001220703125" text="Date" />
+            <TableColumn fx:id="colTime" prefWidth="148.0" text="Time" />
+            <TableColumn fx:id="colAmount" prefWidth="145.60003662109375" text="Amount" />
+         </columns>
+      </TableView>
+      <Button layoutX="1236.0" layoutY="685.0" mnemonicParsing="false" onAction="#backOnButtonAction" prefHeight="38.0" prefWidth="76.0" style="-fx-background-color: #BCA37F;" text="Back">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="1291.0" layoutY="61.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="46.0" />
+      <Button layoutX="1318.0" layoutY="47.0" mnemonicParsing="false" onAction="#addOrderButtonOnAction" prefHeight="26.0" prefWidth="55.0" text="Add">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

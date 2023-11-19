@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.AddMenuFormController">
+   <children>
+      <Label layoutX="269.0" layoutY="42.0" prefHeight="51.0" prefWidth="161.0" text="Add Menu">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="125.0" prefHeight="33.0" prefWidth="118.0" text="Food Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFoodName" layoutX="230.0" layoutY="125.0" prefHeight="26.0" prefWidth="199.0" />
+      <Label layoutX="56.0" layoutY="174.0" prefHeight="33.0" prefWidth="118.0" text="Food ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFoodId" layoutX="231.0" layoutY="177.0" prefHeight="26.0" prefWidth="199.0" />
+      <Label layoutX="56.0" layoutY="244.0" prefHeight="33.0" prefWidth="118.0" text="price">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPrice" layoutX="231.0" layoutY="247.0" prefHeight="26.0" prefWidth="199.0" />
+      <Label layoutX="56.0" layoutY="295.0" prefHeight="33.0" prefWidth="118.0" text="Description">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtAreaDesc" layoutX="230.0" layoutY="295.0" prefHeight="178.0" prefWidth="200.0" />
+      <Button layoutX="487.0" layoutY="399.0" mnemonicParsing="false" onAction="#okButtonOnAction" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: #F875AA;" text="ok">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="567.0" layoutY="399.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Cancel">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="487.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Update">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="583.0" layoutY="441.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Delete">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

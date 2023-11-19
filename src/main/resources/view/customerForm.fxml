@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.CustomerFormController">
+   <children>
+      <Label layoutX="583.0" layoutY="76.0" prefHeight="54.0" prefWidth="294.0" text="Customer Registration">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblCustomer" layoutX="490.0" layoutY="223.0" prefHeight="510.0" prefWidth="654.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="124.800048828125" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="117.5999755859375" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="139.99993896484375" text="Address" />
+            <TableColumn fx:id="colTel" prefWidth="119.2000732421875" text="Phone number" />
+            <TableColumn fx:id="colUserID" prefWidth="150.39999999999998" text="User ID" />
+         </columns>
+      </TableView>
+      <AnchorPane prefHeight="800.0" prefWidth="394.0" style="-fx-background-color: #0F2C59;">
+         <children>
+            <Label layoutX="35.0" layoutY="248.0" prefHeight="26.0" prefWidth="46.0" text="ID" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtId" layoutX="194.0" layoutY="242.0" prefHeight="38.0" prefWidth="156.0" />
+            <Label layoutX="35.0" layoutY="293.0" prefHeight="26.0" prefWidth="46.0" text="Name" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddress" layoutX="194.0" layoutY="342.0" prefHeight="38.0" prefWidth="156.0" />
+            <Label layoutX="29.0" layoutY="342.0" prefHeight="26.0" prefWidth="58.0" text="Address" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtTel" layoutX="194.0" layoutY="395.0" prefHeight="38.0" prefWidth="156.0" />
+            <Label layoutX="29.0" layoutY="387.0" prefHeight="26.0" prefWidth="58.0" text="Phone" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="413.0" prefHeight="26.0" prefWidth="58.0" text="Number" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtName" layoutX="194.0" layoutY="287.0" prefHeight="38.0" prefWidth="156.0" />
+            <Button layoutX="8.0" layoutY="520.0" mnemonicParsing="false" onAction="#saveButtonOnAction" prefHeight="40.0" prefWidth="66.0" style="-fx-background-color: #EADBC8;" text="Save">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="87.0" layoutY="520.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #EADBC8;" text="Update">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="184.0" layoutY="520.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #EADBC8;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="288.0" layoutY="520.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #EADBC8;" text="Back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Label layoutX="29.0" layoutY="446.0" prefHeight="26.0" prefWidth="58.0" text="User ID" textFill="#efeaea">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUserId" layoutX="194.0" layoutY="440.0" prefHeight="38.0" prefWidth="156.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -18,10 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.dto.PaymentDto;
-import lk.ijse.yummy_food_project.dto.tm.CartTm;
 //import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
+import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
 import lk.ijse.yummy_food_project.dto.tm.SavePaymentTm;
 import lk.ijse.yummy_food_project.model.PaymentModel;
 
@@ -46,7 +45,7 @@ public class PaymentFormController {
     private AnchorPane root;
 
     @FXML
-    private TableView<SavePaymentTm> tblPayment;
+    private TableView<PaymentDto> tblPayment;
 
     @FXML
     private TextField txtAmount;
@@ -75,7 +74,7 @@ public class PaymentFormController {
     @FXML
     private Label lblCustomerName;
 
-    private ObservableList<SavePaymentTm> obList = FXCollections.observableArrayList();
+    private ObservableList<PaymentDto> obList = FXCollections.observableArrayList();
     private PaymentModel pModel = new PaymentModel();
 
 
@@ -115,24 +114,24 @@ public class PaymentFormController {
         lblPaymentId.setText(oId);
         setDate();
         setCellValueFactory();
-       // loadAllPayment();
+       loadAllPayment();
         setTime();
 
     }
     @FXML
     void saveOnButtonAction(ActionEvent event) {
-        String id = lblPaymentId.getText();
+       /* String id = lblPaymentId.getText();
         double amount = Double.parseDouble(txtAmount.getText());
         String cusId = lblCustomerId.getText();
         String cusName = lblCustomerName.getText();
         LocalDate date = LocalDate.parse(lblDate.getText());
 
         //var dto = new PaymentDto(id,amount,cusId,cusName,date);
-        var savePaymentTm = new SavePaymentTm( id,amount,cusId,cusName,date);
+        PaymentDto savePaymentTm = new SavePaymentTm( id,amount,cusId,cusName,date);
 
         obList.add(savePaymentTm);
 
-        tblPayment.setItems(obList);
+        tblPayment.setItems(obList);*/
 
        /* try{
             boolean flag = pModel.savePayment(dto);
@@ -152,15 +151,15 @@ public class PaymentFormController {
 
     }
     private void setCellValueFactory(){
-        colPiD.setCellValueFactory(new PropertyValueFactory<>("id"));
+       /* colPiD.setCellValueFactory(new PropertyValueFactory<>("p_id"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("cus_id"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));*/
     }
 
-   /* private void loadAllPayment(){
-        var model = new PaymentModel();
+    private void loadAllPayment(){
+        /*var model = new PaymentModel();
 
         ObservableList<PaymentDto> obList = FXCollections.observableArrayList();
 
@@ -172,6 +171,8 @@ public class PaymentFormController {
                         new PaymentTm(
                                 dto.getId(),
                                 dto.getAmount(),
+                                dto.getCusId(),
+                                dto.getCusName(),
                                 dto.getDate()
                         )
                 );
@@ -179,7 +180,7 @@ public class PaymentFormController {
             tblPayment.setItems(obList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-    }*/
+        }*/
+    }
 
 }

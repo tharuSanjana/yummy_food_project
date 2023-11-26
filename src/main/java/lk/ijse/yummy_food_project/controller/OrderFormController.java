@@ -166,21 +166,19 @@ public class OrderFormController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
-                // User clicked OK, close the form
+
                 closeForm();
             } else {
-                // User clicked Cancel or closed the dialog, do nothing
+
             }
         });
     }
     private void closeForm() {
-        // You can implement the logic to close the form here
-        // For example, get the current stage and close it
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
-    // Other methods in your controller...
+
 
 
 

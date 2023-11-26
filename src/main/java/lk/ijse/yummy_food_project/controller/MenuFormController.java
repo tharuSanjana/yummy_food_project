@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,9 +22,14 @@ import javafx.stage.Modality;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.FoodDto;
 import lk.ijse.yummy_food_project.dto.tm.FoodTm;
 import lk.ijse.yummy_food_project.model.MenuModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class MenuFormController {
@@ -105,7 +111,23 @@ public class MenuFormController {
                 throw new RuntimeException(e);
             }
         }
+    @FXML
+    void viewMenuButtonOnAction(ActionEvent event) throws JRException, SQLException {
+        InputStream resourceAsStream =
+                getClass().getResourceAsStream("/report/viewFood.jrxml");
+
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport compileReport = JasperCompileManager.compileReport(load);
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(
+                        compileReport, //compiled report
+                        null,
+                        DbConnection.getInstance().getConnection() //database connection
+                );
+        JasperViewer.viewReport(jasperPrint, false);
     }
+
+}
 
 
 

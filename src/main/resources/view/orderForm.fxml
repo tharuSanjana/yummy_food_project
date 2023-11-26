@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -44,7 +46,7 @@
          </font>
       </Label>
       <Label fx:id="lblCusName" layoutX="203.0" layoutY="284.0" prefHeight="46.0" prefWidth="100.0" />
-      <Button layoutX="1427.0" layoutY="716.0" mnemonicParsing="false" onAction="#placeOrderButtonOnAction" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #BCA37F;" text="Place Order">
+      <Button layoutX="1427.0" layoutY="716.0" mnemonicParsing="false" onAction="#placeOrderButtonOnAction" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: FFC436;" text="Place Order">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -121,7 +123,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnCancel" layoutX="1306.0" layoutY="716.0" mnemonicParsing="false" onAction="#cancelOnButtonAction" prefHeight="38.0" prefWidth="76.0" style="-fx-background-color: #BCA37F;" text="Cancel">
+      <Button fx:id="btnCancel" layoutX="1306.0" layoutY="716.0" mnemonicParsing="false" onAction="#cancelOnButtonAction" prefHeight="38.0" prefWidth="76.0" style="-fx-background-color: FFC436;" text="Cancel">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -150,5 +152,15 @@
          </font>
       </Label>
       <Label fx:id="lblOrderId" layoutX="203.0" layoutY="172.0" prefHeight="46.0" prefWidth="86.0" />
+      <ImageView fitHeight="191.0" fitWidth="192.0" layoutX="23.0" layoutY="597.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-25%20022215.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="99.0" fitWidth="86.0" layoutX="1407.0" layoutY="10.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-25%20023143.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

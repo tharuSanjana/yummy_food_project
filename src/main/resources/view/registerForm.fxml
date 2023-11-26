@@ -5,87 +5,89 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.RegisterFormController">
    <children>
-      <AnchorPane prefHeight="800.0" prefWidth="1540.0" style="-fx-background-color: #F8F0E5;">
+      <AnchorPane prefHeight="800.0" prefWidth="1540.0" style="-fx-background-color: FFFFE8;">
          <children>
-            <Label layoutX="235.0" layoutY="70.0" prefHeight="58.0" prefWidth="166.0" text="Registration">
+            <Label layoutX="556.0" layoutY="36.0" prefHeight="58.0" prefWidth="166.0" text="Registration">
                <font>
                   <Font name="System Bold Italic" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="77.0" layoutY="195.0" prefHeight="38.0" prefWidth="113.0" text="Name">
+            <Label layoutX="66.0" layoutY="150.0" prefHeight="38.0" prefWidth="63.0" text="Name">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="280.0" prefHeight="35.0" prefWidth="226.0" />
-            <Label layoutX="77.0" layoutY="278.0" prefHeight="38.0" prefWidth="113.0" text="Email">
+            <TextField layoutX="454.0" layoutY="151.0" prefHeight="35.0" prefWidth="226.0" />
+            <Label layoutX="355.0" layoutY="149.0" prefHeight="38.0" prefWidth="63.0" text="Email">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="211.0" prefHeight="35.0" prefWidth="223.0" />
-            <Label layoutX="77.0" layoutY="350.0" prefHeight="38.0" prefWidth="113.0" text="Job roll">
+            <TextField layoutX="153.0" layoutY="151.0" prefHeight="35.0" prefWidth="149.0" />
+            <Label layoutX="708.0" layoutY="146.0" prefHeight="38.0" prefWidth="113.0" text="Job roll">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="352.0" prefHeight="35.0" prefWidth="226.0" />
-            <Label layoutX="77.0" layoutY="421.0" prefHeight="38.0" prefWidth="113.0" text="Address">
+            <TextField layoutX="859.0" layoutY="148.0" prefHeight="35.0" prefWidth="136.0" />
+            <Label layoutX="1063.0" layoutY="146.0" prefHeight="38.0" prefWidth="113.0" text="Address">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="422.0" prefHeight="35.0" prefWidth="225.0" />
-            <Label layoutX="77.0" layoutY="489.0" prefHeight="38.0" prefWidth="113.0" text="User name">
+            <TextField layoutX="1214.0" layoutY="147.0" prefHeight="35.0" prefWidth="166.0" />
+            <Label layoutX="66.0" layoutY="243.0" prefHeight="38.0" prefWidth="113.0" text="User name">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="490.0" prefHeight="35.0" prefWidth="221.0" />
-            <Label layoutX="77.0" layoutY="557.0" prefHeight="38.0" prefWidth="113.0" text="Password">
+            <TextField layoutX="217.0" layoutY="244.0" prefHeight="35.0" prefWidth="156.0" />
+            <Label layoutX="428.0" layoutY="240.0" prefHeight="38.0" prefWidth="113.0" text="Password">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="228.0" layoutY="558.0" prefHeight="35.0" prefWidth="221.0" />
-            <TableView layoutX="552.0" layoutY="169.0" prefHeight="506.0" prefWidth="538.0">
+            <TextField layoutX="579.0" layoutY="241.0" prefHeight="35.0" prefWidth="156.0" />
+            <Button layoutX="822.0" layoutY="293.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: FFC436;" text="Save">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="1156.0" layoutY="293.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: FFC436;" text="Back">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="936.0" layoutY="293.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: FFC436;" text="Update">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="1043.0" layoutY="293.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: F90716;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <TableView layoutX="127.0" layoutY="352.0" prefHeight="431.0" prefWidth="596.0">
                <columns>
                   <TableColumn prefWidth="121.60003662109375" text="Name" />
                   <TableColumn prefWidth="146.4000244140625" text="Email" />
-                  <TableColumn prefWidth="130.39990234375" text="Jod roll" />
-                  <TableColumn prefWidth="139.2000732421875" text="Address" />
+                  <TableColumn prefWidth="160.7999267578125" text="Jod roll" />
+                  <TableColumn prefWidth="165.60003662109375" text="Address" />
                </columns>
             </TableView>
-            <Button layoutX="39.0" layoutY="637.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #FF8080;" text="Save">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
-            <Button layoutX="613.0" layoutY="713.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #FF8080;" text="Cancel">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
-            <Button layoutX="770.0" layoutY="713.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: #FF8080;" text="Back">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
-            <Button layoutX="203.0" layoutY="637.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #6499E9;" text="Update">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
-            <Button layoutX="372.0" layoutY="637.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #E9B824;" text="Delete">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Button>
+            <ImageView fitHeight="431.0" fitWidth="403.0" layoutX="916.0" layoutY="359.0">
+               <image>
+                  <Image url="@../images/Annotation%202023-11-26%20005746.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

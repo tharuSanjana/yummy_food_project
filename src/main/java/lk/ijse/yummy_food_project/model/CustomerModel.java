@@ -3,15 +3,14 @@ package lk.ijse.yummy_food_project.model;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 
-import java.sql.*;
 import java.util.ArrayList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
 public class CustomerModel {
 public ArrayList<CustomerDto> getAllCustomer() throws SQLException {
     Connection connection= DbConnection.getInstance().getConnection();
@@ -92,4 +91,90 @@ public CustomerDto searchCustomerId(String cusId) throws SQLException {
     return  cusDto;
 }
 
+public String getGenerateCustomerId() throws SQLException {
+    Connection connection = DbConnection.getInstance().getConnection();
+
+    String sql = "SELECT cus_id FROM customer ORDER BY cus_id DESC LIMIT 1";
+    PreparedStatement pstm = connection.prepareStatement(sql);
+
+    ResultSet resultSet = pstm.executeQuery();
+    if(resultSet.next()) {
+        return splitCustomerId(resultSet.getString(1));
+    }
+    return splitCustomerId(null);
+
+}
+    private String splitCustomerId(String currentCustomerId) {
+        if(currentCustomerId!= null) {
+            String[] split = currentCustomerId.split("C0");
+
+            int id = Integer.parseInt(split[1]); //01
+            id++;
+            return "C00" + id;
+        } else {
+            return "C001";
+        }
+    }
+    public void getUserId(String pw) throws SQLException {
+       /* Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT user_id FROM user WHERE password = ?;
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1,pw);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()){
+            cusDto = new CustomerDto(
+
+                    resultSet.getString(5)
+            );
+        }
+        return  cusDto;*/
+    }
+    public List<String> getCmbUserId() throws SQLException {
+        Connection connection = null;
+        List<String> userIds = new ArrayList<>();
+        String query = "SELECT user_id FROM user";
+
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                userIds.add(resultSet.getString("user_id"));
+            }
+        } finally {
+
+            if (connection != null) {
+                // connection.close();
+            }
+        }
+
+        return userIds;
+    }
+    public List<String> getCmbCustomerId(){
+        Connection connection = null;
+        List<String> cusIds = new ArrayList<>();
+        String query = "SELECT cus_id FROM customer";
+
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                cusIds.add(resultSet.getString("cus_id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+
+            if (connection != null) {
+                // connection.close();
+            }
+        }
+
+        return cusIds;
+    }
 }

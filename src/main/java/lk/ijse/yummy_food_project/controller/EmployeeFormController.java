@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -95,26 +96,28 @@ public class EmployeeFormController {
     }
     @FXML
     void saveButtonOnAction(ActionEvent event)  {
-        String id = txtId.getText();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String tel = txtTel.getText();
-        String type = txtType.getText();
-        String userId =cmbUserId.getValue();
+        boolean isEmployeeValid = validateEmployee();
+        if(isEmployeeValid) {
+            String id = txtId.getText();
+            String name = txtName.getText();
+            String address = txtAddress.getText();
+            String tel = txtTel.getText();
+            String type = txtType.getText();
+            String userId = cmbUserId.getValue();
 
 
-        var dto = new EmployeeDto(id,name,address,tel,type,userId);
+            var dto = new EmployeeDto(id, name, address, tel, type, userId);
 
-        try{
-            boolean flag = empModel.saveEmp(dto);
-            if(flag){
-                new Alert(Alert.AlertType.CONFIRMATION,"Employee saved!").show();
-                clearFields();
+            try {
+                boolean flag = empModel.saveEmp(dto);
+                if (flag) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!").show();
+                    clearFields();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }catch (SQLException e){
-          new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
-
     }
     public void clearFields(){
         txtId.setText("");
@@ -160,14 +163,7 @@ public class EmployeeFormController {
         }
     }
     public void populateComboBox() {
-       /* try {
-            List<String> dataFromDB = empModel.getCmbUserId();
-           // List<String> dataFromDB = Collections.singletonList(empModel.getCmbUserId());
-            ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
-            cmbUserId.setItems(observableData);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+
         try {
             List<String> dataFromDB = empModel.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
@@ -195,37 +191,73 @@ public class EmployeeFormController {
     }*/
    @FXML
    void updateButtonOnAction(ActionEvent event) {
-       String id = txtId.getText();
-       String name = txtName.getText();
-       String address = txtAddress.getText();
-       String tel = txtTel.getText();
-       String type = txtType.getText();
-       String userId =cmbUserId.getValue();
+       boolean isEmployeeValid = validateEmployee();
+       if(isEmployeeValid) {
+           String id = txtId.getText();
+           String name = txtName.getText();
+           String address = txtAddress.getText();
+           String tel = txtTel.getText();
+           String type = txtType.getText();
+           String userId = cmbUserId.getValue();
 
-       var dto = new EmployeeDto(id,name,address,tel,type,userId);
-       try{
-           boolean flag = empModel.updateEmployee(dto);
-                if(flag){
-                    new Alert(Alert.AlertType.CONFIRMATION,"Employee updated!").show();
-                    clearFields();
-                }
+           var dto = new EmployeeDto(id, name, address, tel, type, userId);
+           try {
+               boolean flag = empModel.updateEmployee(dto);
+               if (flag) {
+                   new Alert(Alert.AlertType.CONFIRMATION, "Employee updated!").show();
+                   clearFields();
+               }
 
-       } catch (SQLException e) {
-          new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+           } catch (SQLException e) {
+               new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+           }
        }
    }
 
     @FXML
     void deleteButtonOnAction(ActionEvent event) {
-        String id = txtId.getText();
-        try{
-            boolean flag = empModel.deleteEmployee(id);
-            if(flag){
-                new Alert(Alert.AlertType.CONFIRMATION,"Employee deleted!").show();
+        boolean isEmployeeValid = validateEmployee();
+        if(isEmployeeValid) {
+            String id = txtId.getText();
+            try {
+                boolean flag = empModel.deleteEmployee(id);
+                if (flag) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
+    private  boolean validateEmployee(){
+        String id = txtId.getText();
+        boolean isIdValid = Pattern.matches("[E][0-9]{3,}",id);
+        if (!isIdValid){
+            new Alert(Alert.AlertType.ERROR,"Invalid employee id").show();
+            return false;
+        }
 
+        String name = txtName.getText();
+        boolean isNameValid = Pattern.matches("[A-Za-z]{4,}",name);
+        if(!isNameValid){
+            new Alert(Alert.AlertType.ERROR,"Invalid employee name").show();
+            return  false;
+        }
+
+        String address = txtAddress.getText();
+        boolean isAddressValid = Pattern.matches("[A-Za-z]{9,}",address);
+        if (isAddressValid){
+            new Alert(Alert.AlertType.ERROR,"Invalid address").show();
+            return false;
+        }
+
+        String tel = txtTel.getText();
+        boolean isTelValid = Pattern.matches("[0][7]{8}",tel);
+        if(isTelValid){
+            new Alert(Alert.AlertType.ERROR,"Invalid phone number").show();
+            return  false;
+        }
+
+        return  true;
+    }
 }

@@ -1,32 +1,22 @@
 package lk.ijse.yummy_food_project.controller;
 import javafx.event.ActionEvent;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.db.DbConnection;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import lk.ijse.yummy_food_project.dto.UserDto;
+import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.UserModel;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 //import static jdk.tools.jlink.internal.plugins.PluginsResourceBundle.getMessage;
 
@@ -40,7 +30,7 @@ public class LoginFormController {
 
     @FXML
     private TextField txtUserName;
-
+    private CustomerModel cusModel = new CustomerModel();
 
 
     @FXML
@@ -64,7 +54,7 @@ public class LoginFormController {
         }else{
             new Alert(Alert.AlertType.ERROR,"username or password incorrect").show();
         }
-
+       //String cusId = cusModel.getUserId(pw);
 
     }
     @FXML

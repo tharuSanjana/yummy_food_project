@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.PlaceOderFormController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" style="-fx-background-color: FFFFE8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.PlaceOderFormController">
    <children>
       <Label layoutX="380.0" layoutY="31.0" prefHeight="57.0" prefWidth="178.0" text="Place Order">
          <font>
@@ -25,16 +27,43 @@
             <TableColumn fx:id="colAmount" prefWidth="145.60003662109375" text="Amount" />
          </columns>
       </TableView>
-      <Button layoutX="1236.0" layoutY="685.0" mnemonicParsing="false" onAction="#backOnButtonAction" prefHeight="38.0" prefWidth="76.0" style="-fx-background-color: #BCA37F;" text="Back">
+      <Button layoutX="1236.0" layoutY="685.0" mnemonicParsing="false" onAction="#backOnButtonAction" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: FFC436;" text="Back">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <Button layoutX="1291.0" layoutY="61.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="46.0" />
-      <Button layoutX="1318.0" layoutY="47.0" mnemonicParsing="false" onAction="#addOrderButtonOnAction" prefHeight="26.0" prefWidth="55.0" text="Add">
+      <Button layoutX="1318.0" layoutY="43.0" mnemonicParsing="false" onAction="#addOrderButtonOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: 00C897;" textFill="#12b147">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="27.0">
+               <image>
+                  <Image url="@../images/Annotation%202023-11-24%20220249.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
+      <ImageView fitHeight="491.0" fitWidth="343.0" layoutX="1174.0" layoutY="116.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20213538.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="166.0" fitWidth="178.0" layoutX="245.0" layoutY="621.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20214518.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="154.0" fitWidth="178.0" layoutX="827.0" layoutY="621.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20214911.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="179.0" fitWidth="166.0" layoutX="14.0" layoutY="384.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20215249.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

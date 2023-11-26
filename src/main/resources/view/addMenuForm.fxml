@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,18 +16,18 @@
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="125.0" prefHeight="33.0" prefWidth="118.0" text="Food Name">
+      <Label layoutX="56.0" layoutY="187.0" prefHeight="33.0" prefWidth="118.0" text="Food Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFoodName" layoutX="230.0" layoutY="125.0" prefHeight="26.0" prefWidth="199.0" />
-      <Label layoutX="56.0" layoutY="174.0" prefHeight="33.0" prefWidth="118.0" text="Food ID">
+      <TextField fx:id="txtFoodName" layoutX="230.0" layoutY="187.0" prefHeight="26.0" prefWidth="199.0" />
+      <Label layoutX="56.0" layoutY="129.0" prefHeight="33.0" prefWidth="118.0" text="Food ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFoodId" layoutX="231.0" layoutY="177.0" prefHeight="26.0" prefWidth="199.0" />
+      <TextField fx:id="txtFoodId" layoutX="231.0" layoutY="133.0" prefHeight="26.0" prefWidth="199.0" />
       <Label layoutX="56.0" layoutY="244.0" prefHeight="33.0" prefWidth="118.0" text="price">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -38,25 +40,35 @@
          </font>
       </Label>
       <TextArea fx:id="txtAreaDesc" layoutX="230.0" layoutY="295.0" prefHeight="178.0" prefWidth="200.0" />
-      <Button layoutX="487.0" layoutY="399.0" mnemonicParsing="false" onAction="#okButtonOnAction" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: #F875AA;" text="ok">
+      <Button layoutX="487.0" layoutY="399.0" mnemonicParsing="false" onAction="#okButtonOnAction" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: FFC436;" text="ok">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="567.0" layoutY="399.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Cancel">
+      <Button fx:id="btnCancel" layoutX="567.0" layoutY="399.0" mnemonicParsing="false" onAction="#cancalButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: FFC436;" text="Cancel">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="487.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Update">
+      <Button layoutX="487.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: FFC436;" text="Update">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="583.0" layoutY="441.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #F875AA;" text="Delete">
+      <Button layoutX="583.0" layoutY="441.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: F90716;" text="Delete">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <ImageView fitHeight="200.0" fitWidth="197.0" layoutX="469.0" layoutY="133.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20160200.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="243.0" fitWidth="240.0" layoutX="447.0" layoutY="123.0">
+         <image>
+            <Image url="@../images/Annotation%202023-11-24%20161423.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

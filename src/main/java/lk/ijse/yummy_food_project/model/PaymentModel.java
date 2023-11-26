@@ -1,14 +1,14 @@
 package lk.ijse.yummy_food_project.model;
 
 import lk.ijse.yummy_food_project.db.DbConnection;
-import lk.ijse.yummy_food_project.dto.tm.CartTm;
+import lk.ijse.yummy_food_project.dto.PaymentDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 public class PaymentModel {
     public String getGeneratePaymentId() throws SQLException {
@@ -77,7 +77,44 @@ public class PaymentModel {
         return dtoList;
 
     }*/
+   public ArrayList<PaymentDto> getAllPayment() throws SQLException {
+       Connection connection= DbConnection.getInstance().getConnection();
+       String sql = "SELECT\n" +
+               "    o.p_id,\n" +
+               "    p.amount,\n" +
+               "    o.cus_id,\n" +
+               "    c.name,\n" +
+               "    o.date\n" +
+               "FROM\n" +
+               "    orders o\n" +
+               "JOIN\n" +
+               "    payment p ON o.p_id = p.p_id\n" +
+               "JOIN\n" +
+               "    customer c ON o.cus_id = c.cus_id;";
 
+
+
+       PreparedStatement pstm = connection.prepareStatement(sql);
+       ResultSet resultSet = pstm.executeQuery();
+
+       ArrayList<PaymentDto> dtoList = new ArrayList<>();
+
+       while(resultSet.next()){
+           dtoList.add(
+                   new PaymentDto(resultSet.getString(1),
+                           resultSet.getDouble(2),
+                           resultSet.getString(3),
+                           resultSet.getString(4),
+                           resultSet.getDate(5).toLocalDate()
+
+
+                           // resultSet.getDouble(7)
+                   )
+           );
+       }
+       return dtoList;
+
+   }
 
     }
 

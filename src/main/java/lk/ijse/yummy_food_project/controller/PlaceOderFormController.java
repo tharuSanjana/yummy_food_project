@@ -21,12 +21,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
-import lk.ijse.yummy_food_project.dto.tm.PlaceOrderTm;
+import lk.ijse.yummy_food_project.dto.PlaceDto;
+import lk.ijse.yummy_food_project.dto.tm.PlaceTm;
+import lk.ijse.yummy_food_project.model.CustomerModel;
+import lk.ijse.yummy_food_project.model.PlaceModel;
 import lk.ijse.yummy_food_project.model.PlaceOrderModel;
 
 
@@ -57,13 +55,15 @@ public class PlaceOderFormController {
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tblPlaceOrder;
+    private TableView<PlaceDto> tblPlaceOrder;
 
 
     @FXML
 
     private Button addBtn;
     private PlaceOrderModel plModel = new PlaceOrderModel();
+    private PlaceModel placeModel = new PlaceModel();
+
 
     @FXML
     void backOnButtonAction(ActionEvent event) throws IOException {
@@ -95,16 +95,44 @@ public class PlaceOderFormController {
     }
     public void initialize() {
         setCellValueFactory();
+        loadAllPlaceOrder();
 
     }
     private void setCellValueFactory() {
-        colOrderId.setCellValueFactory(new PropertyValueFactory<>("oId"));
+        colOrderId.setCellValueFactory(new PropertyValueFactory<>("or_id"));
         colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         colPaymentId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+    }
+
+    private void loadAllPlaceOrder(){
+        var model = new PlaceModel();
+
+        ObservableList<PlaceDto> obList = FXCollections.observableArrayList();
+
+        try{
+            List<PlaceDto> dtoList = model.getAllPlaceOrder();
+
+            for (PlaceDto dto : dtoList){
+                obList.add(
+                        new PlaceTm(
+                                dto.getOr_id(),
+                                dto.getCustomerId(),
+                                dto.getCustomerName(),
+                                dto.getPaymentId(),
+                                dto.getDate(),
+                                dto.getTime(),
+                                dto.getAmount()
+                        )
+                );
+            }
+            tblPlaceOrder.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

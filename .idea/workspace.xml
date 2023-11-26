@@ -4,80 +4,84 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05e56a77-6a9c-40a3-9676-d2ca04053983" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOOTEX.LOG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/AppInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/AppInitializerWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/AddMenuFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/CustomerFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/DashboardFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/EmployeeFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/IngredientsFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/LoginFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/MenuFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/OrderFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PaymentFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PlaceOderFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/RegisterFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/SupplierFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/db/DbConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/CustomerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/EmployeeDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/FoodDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/IngredientsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/OrderDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/PaymentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/PlaceOrderDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/SupplierDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/CartTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/CustomerTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/EmployeeTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/FoodTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/IngredientsTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/OrderTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PaymentTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PlaceOrderTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/SavePaymentTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/SupplierTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/userTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/AddMenuModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/CustomerModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/EmployeeModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/IngredientsModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/MenuModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/OrderDetailModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/OrderModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/PaymentModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/PlaceOrderModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/SupplierModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/UserModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/saveOrderModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/add icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/add.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/addMenuForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/customerForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/dashboardForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/employeeForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/ingredientsForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/loginForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/menuForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/orderForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/paymentForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/placeOderForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/registerForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/supplierForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/test.fxml" afterDir="false" />
+    <list default="true" id="05e56a77-6a9c-40a3-9676-d2ca04053983" name="Changes" comment="apply main process">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/DeleteCustomerFormController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/SupIngFormController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/UpdateCustomerFormController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/Ingredients1Dto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/PlaceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PlaceIngredientsTm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PlaceTm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/LoginModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/SupModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 210535.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 211945.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 212808.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 213538.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 214155.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 214518.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 214911.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 215249.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-24 220249.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-25 022215.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-25 023143.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Annotation 2023-11-25 174740.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/report/viewCustomers.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/report/viewFood.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/deleteCustomerForm.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/supIngForm.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/updateCustomerForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/AddMenuFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/AddMenuFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/CustomerFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/CustomerFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/DashboardFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/DashboardFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/EmployeeFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/IngredientsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/IngredientsFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/LoginFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/LoginFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/MenuFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/MenuFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/OrderFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/OrderFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PaymentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PaymentFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PlaceOderFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/PlaceOderFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/SupplierFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/controller/SupplierFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/IngredientsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/IngredientsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/PaymentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/PaymentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/SupplierDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/SupplierDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/IngredientsTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/IngredientsTm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PaymentTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/PaymentTm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/SupplierTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/dto/tm/SupplierTm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/CustomerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/CustomerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/IngredientsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/IngredientsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/PaymentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/PaymentModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/SupplierModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/SupplierModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/saveOrderModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/yummy_food_project/model/PlaceModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/addMenuForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/addMenuForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/customerForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/customerForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboardForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboardForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employeeForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employeeForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/ingredientsForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/ingredientsForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/loginForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/loginForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/menuForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/menuForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/orderForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/orderForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/paymentForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/paymentForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/placeOderForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/placeOderForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/registerForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/registerForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/supplierForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/supplierForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,25 +94,34 @@
     </option>
   </component>
   <component name="ProjectId" id="2YPOCHNMUxfxkyZmF2zz2a105Oq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/yummy_food_project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/yummy_food_project/src/main/resources/report&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\yummy_food_project\src\main\resources\report" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="AppInitializerWrapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lk.ijse.yummy_food_project.AppInitializerWrapper" />
@@ -138,11 +151,58 @@
       <option name="presentableId" value="Default" />
       <updated>1700423622119</updated>
       <workItem from="1700423624875" duration="604000" />
-      <workItem from="1700424610198" duration="1696000" />
+      <workItem from="1700424610198" duration="3804000" />
+      <workItem from="1700429870383" duration="9584000" />
+      <workItem from="1700461910167" duration="58000" />
+      <workItem from="1700461993686" duration="12541000" />
+      <workItem from="1700488425916" duration="790000" />
+      <workItem from="1700496027708" duration="18367000" />
+      <workItem from="1700536654120" duration="10021000" />
+      <workItem from="1700558675409" duration="7494000" />
+      <workItem from="1700567539660" duration="2938000" />
+      <workItem from="1700578503577" duration="229000" />
+      <workItem from="1700591200703" duration="4981000" />
+      <workItem from="1700608108350" duration="2654000" />
+      <workItem from="1700646593858" duration="6373000" />
+      <workItem from="1700653898314" duration="40000" />
+      <workItem from="1700654011753" duration="4184000" />
+      <workItem from="1700671748944" duration="2550000" />
+      <workItem from="1700689709246" duration="534000" />
+      <workItem from="1700690266124" duration="19232000" />
+      <workItem from="1700729840187" duration="153000" />
+      <workItem from="1700730079439" duration="3568000" />
+      <workItem from="1700739089722" duration="777000" />
+      <workItem from="1700746337836" duration="601000" />
+      <workItem from="1700748152109" duration="289000" />
+      <workItem from="1700752268014" duration="1503000" />
+      <workItem from="1700781402954" duration="2121000" />
+      <workItem from="1700819638474" duration="6537000" />
+      <workItem from="1700836609300" duration="5019000" />
+      <workItem from="1700855927657" duration="3233000" />
+      <workItem from="1700867391347" duration="3193000" />
+      <workItem from="1700905847122" duration="2117000" />
+      <workItem from="1700932458939" duration="2443000" />
+      <workItem from="1700944213907" duration="7799000" />
+      <workItem from="1700955238365" duration="2474000" />
+      <workItem from="1700975132038" duration="13081000" />
+      <workItem from="1700997652794" duration="1744000" />
     </task>
+    <task id="LOCAL-00001" summary="apply main process">
+      <created>1700427025972</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700427025972</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="apply main process" />
+    <option name="LAST_COMMIT_MESSAGE" value="apply main process" />
   </component>
 </project>

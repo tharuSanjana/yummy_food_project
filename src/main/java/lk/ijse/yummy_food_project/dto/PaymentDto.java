@@ -59,12 +59,12 @@ public class PaymentDto {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-public PaymentDto(String id, double amount, String cusId, String cusName, LocalDate date){}
-    public PaymentDto(String id, double amount, LocalDate date, String cusId, String cusName) {
+//public PaymentDto(String id, double amount, String cusId, String cusName, LocalDate date){}
+    public PaymentDto(String id, double amount, String cusId, String cusName,LocalDate date) {
         this.id = id;
         this.amount = amount;
-        this.date = date;
         this.cusId = cusId;
         this.cusName = cusName;
+        this.date = date;
     }
 }

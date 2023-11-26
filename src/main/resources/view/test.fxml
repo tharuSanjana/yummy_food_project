@@ -6,141 +6,76 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Test">
    <children>
-      <Label layoutX="463.0" layoutY="21.0" prefHeight="57.0" prefWidth="178.0" text="Order">
-         <font>
-            <Font name="System Bold Italic" size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="60.0" layoutY="104.0" prefHeight="38.0" prefWidth="86.0" text="Date">
+      <Label layoutX="38.0" layoutY="231.0" prefHeight="39.0" prefWidth="91.0" text="Supplier ID" textFill="#201e1e">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="387.0" layoutY="110.0" prefHeight="38.0" prefWidth="86.0" text="Time">
+      <Label layoutX="32.0" layoutY="290.0" prefHeight="39.0" prefWidth="102.0" text="Supplier name" textFill="#302e2e">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="166.0" prefHeight="38.0" prefWidth="100.0" text="Order ID">
+      <ComboBox layoutX="161.0" layoutY="238.0" onAction="#cmbSupplierOnAction" prefWidth="150.0" />
+      <Label fx:id="lblSupName" layoutX="164.0" layoutY="301.0" prefHeight="28.0" prefWidth="158.0" textFill="#f2eeee" />
+      <Button layoutX="1368.0" layoutY="680.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="34.0" prefWidth="79.0" style="-fx-background-color: #EADBC8;" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="402.0" layoutY="96.0" prefHeight="28.0" prefWidth="117.0" text="ingredients ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblOrderDate" layoutX="139.0" layoutY="107.0" prefHeight="32.0" prefWidth="134.0" />
-      <Label fx:id="lblOrderDate1" layoutX="440.0" layoutY="113.0" prefHeight="32.0" prefWidth="134.0" />
-      <Label fx:id="lblOrderDate11" layoutX="516.0" layoutY="123.0" prefHeight="32.0" prefWidth="134.0" />
-      <Label fx:id="lblOrderDate111" layoutX="146.0" layoutY="169.0" prefHeight="32.0" prefWidth="134.0" />
-      <Label layoutX="41.0" layoutY="223.0" prefHeight="38.0" prefWidth="100.0" text="Customer ID">
+      <Label layoutX="777.0" layoutY="95.0" prefHeight="28.0" prefWidth="131.0" text="ingredients name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbCustomerId" layoutX="193.0" layoutY="229.0" onAction="#cmbCustomerOnAction" prefHeight="26.0" prefWidth="122.0" style="-fx-background-radius: 10;" />
-      <Label layoutX="34.0" layoutY="278.0" prefHeight="38.0" prefWidth="114.0" text="Customer name">
+      <Label fx:id="lblIngName" layoutX="937.0" layoutY="86.0" prefHeight="31.0" prefWidth="91.0" />
+      <Label layoutX="1040.0" layoutY="94.0" prefHeight="28.0" prefWidth="61.0" text="Price">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblCusName" layoutX="193.0" layoutY="274.0" prefHeight="46.0" prefWidth="100.0" />
-      <Label fx:id="lblFoodName" layoutX="143.0" layoutY="528.0" prefHeight="32.0" prefWidth="222.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="380.0" layoutY="232.0" prefHeight="20.0" prefWidth="100.0" text="Add customer">
+      <Label layoutX="1306.0" layoutY="94.0" prefHeight="28.0" prefWidth="61.0" text="Qty">
          <font>
-            <Font name="System Italic" size="14.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="1417.0" layoutY="706.0" mnemonicParsing="false" onAction="#placeOrderButtonOnAction" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #BCA37F;" text="Place Order">
+      <ComboBox fx:id="cmbIngId" layoutX="533.0" layoutY="98.0" onAction="#cmbIngOnAction" prefWidth="150.0" />
+      <TextField fx:id="txtPrice" layoutX="1081.0" layoutY="98.0" />
+      <TextField fx:id="txtQty" layoutX="1337.0" layoutY="95.0" />
+      <Button layoutX="1275.0" layoutY="680.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #EADBC8;" text="Add">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblPaymentId" layoutX="536.0" layoutY="136.0" prefHeight="46.0" prefWidth="86.0" />
+      <Label layoutX="404.0" layoutY="140.0" prefHeight="38.0" prefWidth="93.0" text="Payment ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="717.0" prefHeight="31.0" prefWidth="79.0" text="Net total">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
-      </Button>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="481.0" layoutY="232.0">
-         <image>
-            <Image url="@../images/add%20icon.png" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tblOrder" layoutX="575.0" layoutY="111.0" prefHeight="498.0" prefWidth="943.0">
+      </Label>
+      <Label fx:id="lblNetTotal" layoutX="202.0" layoutY="724.0" prefHeight="28.0" prefWidth="74.0" />
+      <TableView layoutX="562.0" layoutY="179.0" prefHeight="506.0" prefWidth="538.0">
          <columns>
-            <TableColumn fx:id="colOrderId" prefWidth="75.0" text="Order ID" />
-            <TableColumn fx:id="colDate" prefWidth="84.7999267578125" text="Date" />
-            <TableColumn fx:id="colTime" prefWidth="84.00006103515625" text="Time" />
-            <TableColumn fx:id="colFoodId" prefWidth="100.800048828125" text="Food Id" />
-            <TableColumn fx:id="colFoodName" prefWidth="126.4000244140625" text="Food name" />
-            <TableColumn fx:id="colPrice" prefWidth="101.5999755859375" text="Price" />
-            <TableColumn fx:id="colQty" prefWidth="109.60009765625" text="Qty" />
-            <TableColumn fx:id="colTotal" prefWidth="109.5999755859375" text="Total" />
-            <TableColumn fx:id="colAction" prefWidth="149.5999755859375" text="Action" />
+            <TableColumn prefWidth="121.60003662109375" text="Name" />
+            <TableColumn prefWidth="146.4000244140625" text="Email" />
+            <TableColumn prefWidth="130.39990234375" text="Jod roll" />
+            <TableColumn prefWidth="139.2000732421875" text="Address" />
          </columns>
       </TableView>
-      <Button alignment="BASELINE_LEFT" layoutX="379.0" layoutY="223.0" mnemonicParsing="false" onAction="#newButtonOnAction" opacity="0.0" prefHeight="38.0" prefWidth="154.0" text="Add new customer">
-         <font>
-            <Font name="System Italic" size="14.0" />
-         </font>
-      </Button>
-      <Label layoutX="597.0" layoutY="651.0" prefHeight="38.0" prefWidth="76.0" text="Net Total">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="27.0" layoutY="457.0" prefHeight="38.0" prefWidth="100.0" text="Driver ID">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="20.0" layoutY="515.0" prefHeight="38.0" prefWidth="114.0" text="Driver name">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblDriverName" layoutX="152.0" layoutY="518.0" prefHeight="32.0" prefWidth="121.0" />
-      <Label layoutX="268.0" layoutY="541.0" prefHeight="38.0" prefWidth="100.0" text="Food ID">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="268.0" layoutY="615.0" prefHeight="38.0" prefWidth="114.0" text="Food name">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblFoodName1" layoutX="396.0" layoutY="618.0" prefHeight="32.0" prefWidth="150.0" />
-      <Label layoutX="264.0" layoutY="669.0" prefHeight="38.0" prefWidth="76.0" text="Price">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblPrice1" layoutX="361.0" layoutY="672.0" prefHeight="32.0" prefWidth="142.0" />
-      <Label layoutX="264.0" layoutY="725.0" prefHeight="38.0" prefWidth="76.0" text="Qty">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtQty1" layoutX="372.0" layoutY="725.0" />
-      <ComboBox fx:id="cmbDriverId" layoutX="152.0" layoutY="464.0" onAction="#cmbEmployeeOnAction" prefWidth="150.0" />
-      <ComboBox fx:id="cmbFoodId" layoutX="406.0" layoutY="548.0" onAction="#cmbFoodOnAction" prefWidth="150.0" />
-      <Button layoutX="566.0" layoutY="738.0" mnemonicParsing="false" onAction="#addToCartButtonOnAction" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: #5272F2;" text="Add to cart">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Button>
-      <Label layoutX="34.0" layoutY="341.0" prefHeight="38.0" prefWidth="100.0" text="Order Type">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="27.0" layoutY="401.0" prefHeight="38.0" prefWidth="331.0" text="If order type is delivery, please select a driver" textFill="#b1234b">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="cmbOrderType" layoutX="168.0" layoutY="347.0" onAction="#cmbOrderTypeOnAction" prefWidth="150.0" />
-      <Label fx:id="lblFoodName11" layoutX="695.0" layoutY="653.0" prefHeight="32.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

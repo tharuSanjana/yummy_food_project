@@ -11,15 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" style="-fx-background-color: FFFFE8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.EmployeeFormController">
    <children>
-      <Label layoutX="87.0" layoutY="178.0" prefHeight="26.0" prefWidth="93.0" text="Employee ID" textFill="#300303">
+      <Label layoutX="87.0" layoutY="178.0" prefHeight="26.0" prefWidth="93.0" text=" ID" textFill="#300303">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="218.0" layoutY="172.0" prefHeight="38.0" prefWidth="156.0" />
       <Label layoutX="439.0" layoutY="178.0" prefHeight="26.0" prefWidth="46.0" text="Name" textFill="#1e0202">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -58,7 +56,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Label layoutX="87.0" layoutY="259.0" prefHeight="26.0" prefWidth="121.0" text="Employee type" textFill="#2e0202">
+      <Label layoutX="87.0" layoutY="259.0" prefHeight="26.0" prefWidth="121.0" text=" Type" textFill="#2e0202">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -90,5 +88,6 @@
             <Image url="@../images/Annotation%202023-11-24%20210535.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblEmpId" layoutX="214.0" layoutY="178.0" prefHeight="26.0" prefWidth="122.0" />
    </children>
 </AnchorPane>

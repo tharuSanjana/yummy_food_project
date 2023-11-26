@@ -7,13 +7,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -27,7 +30,7 @@ import lk.ijse.yummy_food_project.model.EmployeeModel;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.Label;
 public class EmployeeFormController {
     @FXML
     private TextField txtType;
@@ -40,7 +43,8 @@ public class EmployeeFormController {
     private TextField txtAddress;
 
     @FXML
-    private TextField txtId;
+    private Label lblEmpId;
+
 
     @FXML
     private TextField txtName;
@@ -79,6 +83,7 @@ public class EmployeeFormController {
    // private UserModel userModel = new UserModel();
 
     public void initialize() {
+        generateEmployeeId();
         setCellValueFactory();
         loadAllEmployee();
         populateComboBox();
@@ -98,7 +103,7 @@ public class EmployeeFormController {
     void saveButtonOnAction(ActionEvent event)  {
         boolean isEmployeeValid = validateEmployee();
         if(isEmployeeValid) {
-            String id = txtId.getText();
+            String id = lblEmpId.getText();
             String name = txtName.getText();
             String address = txtAddress.getText();
             String tel = txtTel.getText();
@@ -120,7 +125,7 @@ public class EmployeeFormController {
         }
     }
     public void clearFields(){
-        txtId.setText("");
+        lblEmpId.setText("");
         txtName.setText("");
         txtAddress.setText("");
         txtTel.setText("");
@@ -190,10 +195,10 @@ public class EmployeeFormController {
         }
     }*/
    @FXML
-   void updateButtonOnAction(ActionEvent event) {
-       boolean isEmployeeValid = validateEmployee();
+   void updateButtonOnAction(ActionEvent event) throws IOException {
+       /*boolean isEmployeeValid = validateEmployee();
        if(isEmployeeValid) {
-           String id = txtId.getText();
+           String id = lblEmpId.getText();
            String name = txtName.getText();
            String address = txtAddress.getText();
            String tel = txtTel.getText();
@@ -211,14 +216,25 @@ public class EmployeeFormController {
            } catch (SQLException e) {
                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
            }
-       }
+       }*/
+       URL resource = this.getClass().getResource("/view/updateEmployeeform.fxml");
+       FXMLLoader fxmlLoader = new FXMLLoader(resource);
+       Parent load = fxmlLoader.load();
+       Stage stage = new Stage();
+       stage.setTitle("Update employee");
+       stage.setScene(new Scene(load));
+       stage.centerOnScreen();
+       stage.initModality(Modality.APPLICATION_MODAL);
+
+       stage.setResizable(false);
+       stage.show();
    }
 
     @FXML
     void deleteButtonOnAction(ActionEvent event) {
         boolean isEmployeeValid = validateEmployee();
         if(isEmployeeValid) {
-            String id = txtId.getText();
+            String id = lblEmpId.getText();
             try {
                 boolean flag = empModel.deleteEmployee(id);
                 if (flag) {
@@ -230,7 +246,7 @@ public class EmployeeFormController {
         }
     }
     private  boolean validateEmployee(){
-        String id = txtId.getText();
+        String id = lblEmpId.getText();
         boolean isIdValid = Pattern.matches("[E][0-9]{3,}",id);
         if (!isIdValid){
             new Alert(Alert.AlertType.ERROR,"Invalid employee id").show();
@@ -259,5 +275,16 @@ public class EmployeeFormController {
         }
 
         return  true;
+    }
+    private String generateEmployeeId(){
+        String empId = null;
+        try {
+            empId= empModel.getGenerateEmployeeId();
+            lblEmpId.setText(empId);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        return empId;
     }
 }

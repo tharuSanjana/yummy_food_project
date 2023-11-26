@@ -61,7 +61,7 @@ public class UpdateCustomerFormController {
 
     @FXML
     void cmbCusIdOnAction(ActionEvent event) {
-        String cusId = (String) cmbCusId.getValue();
+        String cusId = cmbCusId.getValue();
         try{
             CustomerDto cusDto = cusModel.searchCustomerId(cusId);
             txtName.setText(cusDto.getName());

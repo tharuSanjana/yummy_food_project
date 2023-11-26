@@ -169,6 +169,30 @@ public class EmployeeModel {
      return empName;
 
  }*/
+    public String getGenerateEmployeeId() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT emp_id FROM employee ORDER BY emp_id DESC LIMIT 1";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            return splitEmployeeId(resultSet.getString(1));
+        }
+        return splitEmployeeId(null);
+    }
+    private String splitEmployeeId(String currentEmployeeId) {
+        if(currentEmployeeId!= null) {
+            String[] split = currentEmployeeId.split("E0");
+
+            int id = Integer.parseInt(split[1]); //01
+            id++;
+            return "E00" + id;
+        } else {
+            return "E001";
+        }
+    }
    }
+
 
 

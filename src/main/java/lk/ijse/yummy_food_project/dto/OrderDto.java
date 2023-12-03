@@ -13,7 +13,7 @@ public class OrderDto {
     private LocalTime time;
     private String cusId;
     private String empId;
-public OrderDto (String orderType, String cusId, String empId, List<CartTm> cartTmList){}
+public OrderDto (){}
     public OrderDto(String id, LocalDate date, String orderType, LocalTime time, String cusId, String empId) {
         this.id = id;
         this.date = date;

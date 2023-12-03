@@ -192,7 +192,53 @@ public class EmployeeModel {
             return "E001";
         }
     }
-   }
+    public EmployeeDto searchEmpId(String empId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM employee WHERE emp_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1,empId);
+        ResultSet resultSet = pstm.executeQuery();
+
+        EmployeeDto empDto = null;
+
+        if(resultSet.next()){
+            empDto = new EmployeeDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6)
+            );
+        }
+        return  empDto;
+    }
+    public List<String> getCmbEmpId(){
+        Connection connection = null;
+        List<String> empIds = new ArrayList<>();
+        String query = "SELECT emp_id FROM employee";
+
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement(query);
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                empIds.add(resultSet.getString("emp_id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+
+            if (connection != null) {
+                // connection.close();
+            }
+        }
+
+        return empIds;
+    }
+    }
+   //}
 
 
 

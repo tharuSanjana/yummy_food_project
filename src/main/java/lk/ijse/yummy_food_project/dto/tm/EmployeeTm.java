@@ -22,8 +22,9 @@ public class EmployeeTm extends EmployeeDto {
                 ", userId='" + userId + '\'' +
                 '}';
     }
-    public EmployeeTm(){}
+
     public EmployeeTm(String id, String name, String address, String tel, String type, String userId) {
+        super(id,name,address,tel,type,userId);
         this.id = id;
         this.name = name;
         this.address = address;

@@ -5,24 +5,31 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
 import lk.ijse.yummy_food_project.dto.tm.SupplierTm;
+import lk.ijse.yummy_food_project.email.SendEmail;
 import lk.ijse.yummy_food_project.model.SupplierModel;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class SupplierFormController{
 
+    @FXML
+    private TableColumn<?, ?> colEmail;
 
-
+    @FXML
+    private Label lblId;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -47,14 +54,12 @@ public class SupplierFormController{
 
 
     @FXML
-    private TextField txtId;
-
-    @FXML
     private TextField txtName;
 
     @FXML
     private TextField txtTel;
-
+    @FXML
+    private TextField txtEmail;
     private SupplierModel supModel = new SupplierModel();
     @FXML
     void backButtonOnAction(ActionEvent event) throws IOException {
@@ -67,10 +72,10 @@ public class SupplierFormController{
     }
 
     @FXML
-    void deleteButtonOnAction(ActionEvent event) {
-        boolean isSupplierValid = validateSupplier();
+    void deleteButtonOnAction(ActionEvent event) throws IOException {
+       /* boolean isSupplierValid = validateSupplier();
         if (isSupplierValid) {
-            String id = txtId.getText();
+            String id = lblId.getText();
 
             try {
                 boolean flag = supModel.deleteSupplier(id);
@@ -83,7 +88,18 @@ public class SupplierFormController{
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }
+        }*/
+        URL resource = this.getClass().getResource("/view/deleteSupplierform.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Update supplier");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setResizable(false);
+        stage.show();
     }
 
 
@@ -91,18 +107,21 @@ public class SupplierFormController{
     void saveButtonOnAction(ActionEvent event) {
         boolean isSupplierValid = validateSupplier();
         if (isSupplierValid) {
-            String id = txtId.getText();
+            String id = lblId.getText();
             String name = txtName.getText();
             String tel = txtTel.getText();
+            String email = txtEmail.getText();
 
-
-            var dto = new SupplierDto(id, name, tel);
+            var dto = new SupplierDto(id, name, tel,email);
 
             try {
                 boolean flag = supModel.saveSupplier(dto);
 
                 if (flag) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                    new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
+                    SendEmail mail = new SendEmail();
+                    String[] list =new String[]{dto.getEmail()};
+                    mail.sendFromGMail(list,"Saved","You are saved !!");
                     clearFields();
                 }
             } catch (SQLException e) {
@@ -112,33 +131,29 @@ public class SupplierFormController{
     }
 
     @FXML
-    void updateButtonOnAction(ActionEvent event) {
-        boolean isSupplierValid = validateSupplier();
-        if (isSupplierValid) {
-            String id = txtId.getText();
-            String name = txtName.getText();
-            String tel = txtTel.getText();
+    void updateButtonOnAction(ActionEvent event) throws IOException {
 
 
-            var dto = new SupplierDto(id, name, tel);
-            try {
-                boolean flag = supModel.updateSupplier(dto);
-                if (flag) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
-                    clearFields();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            }
-        }
+        URL resource = this.getClass().getResource("/view/updateSupplierform.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Update supplier");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setResizable(false);
+        stage.show();
     }
     private void clearFields() {
-        txtId.setText("");
+        lblId.setText("");
         txtName.setText("");
         txtTel.setText("");
 
     }
     public void initialize() {
+        generateSupplierId();
         setCellValueFactory();
         loadAllSupplier();
     }
@@ -146,6 +161,7 @@ public class SupplierFormController{
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
     }
     private void loadAllSupplier(){
@@ -161,7 +177,8 @@ public class SupplierFormController{
                         new SupplierTm(
                                 dto.getId(),
                                 dto.getName(),
-                                dto.getTel()
+                                dto.getTel(),
+                                dto.getEmail()
 
                         )
                 );
@@ -172,7 +189,7 @@ public class SupplierFormController{
         }
     }
     private  boolean validateSupplier(){
-        String id = txtId.getText();
+        String id = lblId.getText();
         boolean isIdValid = Pattern.matches("[S][0-9]{3,}",id);
         if (!isIdValid){
             new Alert(Alert.AlertType.ERROR,"Invalid supplier id").show();
@@ -196,4 +213,16 @@ public class SupplierFormController{
 
         return true;
     }
+    private String generateSupplierId(){
+        String supId = null;
+        try {
+            supId = supModel.getGenerateSupplierId();
+            lblId.setText(supId);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        return supId;
+    }
+
 }

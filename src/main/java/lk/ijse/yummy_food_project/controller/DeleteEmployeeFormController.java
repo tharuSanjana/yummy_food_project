@@ -1,14 +1,13 @@
 package lk.ijse.yummy_food_project.controller;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
@@ -16,13 +15,12 @@ import lk.ijse.yummy_food_project.model.EmployeeModel;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UpdateEmployeeFormController {
+public class DeleteEmployeeFormController {
     @FXML
     private Button btnCancel;
 
     @FXML
     private ComboBox<String> cmbEmpId;
-
 
     @FXML
     private ComboBox<String> cmbUserId;
@@ -38,46 +36,14 @@ public class UpdateEmployeeFormController {
 
     @FXML
     private TextField txtTy;
-
-    private EmployeeModel empModel = new EmployeeModel();
-    private CustomerModel cusModel = new CustomerModel();
-
+private EmployeeModel empModel = new EmployeeModel();
+private CustomerModel cusModel = new CustomerModel();
     public void initialize() {
         populateComboBoxEmpId();
         populateComboBoxUser();
     }
-    public void cmbUserIdOnAction(ActionEvent actionEvent) {
-    }
-
-    public void okButtonOnAction(ActionEvent actionEvent) {
-        String id =  cmbEmpId.getValue();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String tel = txtTel.getText();
-        String type = txtTy.getText();
-        String userId =  cmbUserId.getValue();
-
-        var dto = new EmployeeDto(id, name, address, tel, type, userId);
-        try {
-            boolean flag = empModel.updateEmployee(dto);
-            if (flag) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee updated!").show();
-                clearFields();
-            }
-
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-    private void clearFields() {
-        txtName.setText("");
-        txtAddress.setText("");
-        txtTel.setText("");
-        txtTy.setText("");
-
-    }
-
-    public void cancelButtonOnAction(ActionEvent actionEvent) {
+    @FXML
+    void cancelButtonOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK) {
@@ -93,6 +59,7 @@ public class UpdateEmployeeFormController {
         stage.close();
     }
 
+
     @FXML
     void cmbEmpIdOnAction(ActionEvent event) {
         String empId =  cmbEmpId.getValue();
@@ -105,6 +72,32 @@ public class UpdateEmployeeFormController {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void clearFields() {
+        txtName.setText("");
+        txtAddress.setText("");
+        txtTel.setText("");
+        txtTy.setText("");
+
+    }
+
+    @FXML
+    void cmbUserIdOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void okButtonOnAction(ActionEvent event) {
+        String id = cmbEmpId.getValue();
+        try {
+            boolean flag = empModel.deleteEmployee(id);
+            if (flag) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
     public void populateComboBoxEmpId() {

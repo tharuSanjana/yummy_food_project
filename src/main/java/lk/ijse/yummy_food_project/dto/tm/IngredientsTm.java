@@ -1,6 +1,5 @@
 package lk.ijse.yummy_food_project.dto.tm;
 
-import javafx.scene.control.Button;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
 
 public class IngredientsTm extends IngredientsDto {
@@ -8,8 +7,7 @@ public class IngredientsTm extends IngredientsDto {
     private String name;
     private double price;
     private double qty;
-    //private double total;
-   // private Button btn;
+    private String pId;
 
 
     @Override
@@ -19,8 +17,7 @@ public class IngredientsTm extends IngredientsDto {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", qty=" + qty +
-                //", total=" + total +
-               // ", btn=" + btn +
+                ", pId='" + pId + '\'' +
                 '}';
     }
 
@@ -59,21 +56,27 @@ public class IngredientsTm extends IngredientsDto {
         return qty;
     }
 
+    @Override
     public void setQty(double qty) {
         this.qty = qty;
     }
 
+    @Override
+    public String getpId() {
+        return pId;
+    }
 
+    @Override
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
 
-
-
-    public IngredientsTm(String id, String name, double price, double qty) {
-        super(id, name, price, qty);
+    public IngredientsTm(String id, String name, double price, double qty, String pId) {
+        super(id, name, price, qty, pId);
         this.id = id;
         this.name = name;
         this.price = price;
         this.qty = qty;
-        //this.total = total;
-       // this.btn = btn;
+        this.pId = pId;
     }
 }

@@ -2,13 +2,20 @@ package lk.ijse.yummy_food_project.dto.tm;
 
 import lk.ijse.yummy_food_project.dto.SupplierDto;
 
-import java.awt.*;
-
 public class SupplierTm extends SupplierDto {
     private String id;
     private String name;
 
     private String tel;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
@@ -16,6 +23,7 @@ public class SupplierTm extends SupplierDto {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -43,10 +51,11 @@ public class SupplierTm extends SupplierDto {
         this.tel = tel;
     }
 
-    public SupplierTm(String id, String name, String tel) {
-        super(id,name,tel);
+    public SupplierTm(String id, String name, String tel, String email) {
+        super(id, name, tel,email);
         this.id = id;
         this.name = name;
         this.tel = tel;
+        this.email = email;
     }
 }

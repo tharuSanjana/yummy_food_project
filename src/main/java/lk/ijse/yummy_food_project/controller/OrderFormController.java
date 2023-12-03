@@ -354,46 +354,7 @@ public void populateComboBox() {
         }
         lblNetTotal.setText(String.valueOf(total));
     }
-   // @FXML
-   /* void placeOrderButtonOnAction(ActionEvent event) {
-        String or_id = txtOrderId.getText();
-        LocalDate date = LocalDate.parse(lblOrderDate.getText());
-        String order_type = (String) cmbOrderType.getValue();
-        LocalTime time = LocalTime.parse(lblTime.getText());
-        String cus_id = cmbCustomerId.getValue();
-        String emp_id = cmbDriverId.getValue();
 
-      /* List<CartTm> cartTmList = new ArrayList<>();
-        for (int i = 0; i < tblOrder.getItems().size(); i++) {
-
-            CartTm cartTm = obList.get(i);
-
-            cartTmList.add(cartTm);
-        }
-
-        System.out.println("Place order form controller: " + cartTmList);
-        var oDto = new OrderDto(orderId, date, orderType,time,cusId,driverId, cartTmList);
-        try {
-            boolean isSuccess = OrderModel.placeOrder(oDto);
-            if (isSuccess) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
-      /*  var dto = new OrderDto(or_id,date,order_type,time,cus_id,emp_id);
-        try{
-            boolean flag = orderModel.saveOrder(dto);
-
-            if(flag){
-                new Alert(Alert.AlertType.CONFIRMATION, "order saved!").show();
-                //clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-
-    }*/
    @FXML
    void cmbOrderTypeOnAction(ActionEvent event) {
 

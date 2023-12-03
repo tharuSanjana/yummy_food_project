@@ -40,34 +40,20 @@
          </font>
       </Label>
       <TextField fx:id="txtQty" layoutX="398.0" layoutY="263.0" prefHeight="38.0" prefWidth="182.0" />
-      <TextField fx:id="txtId" layoutX="153.0" layoutY="167.0" prefHeight="38.0" prefWidth="154.0" />
       <Label fx:id="lblPaymentId" layoutX="187.0" layoutY="259.0" prefHeight="46.0" prefWidth="100.0" />
       <Label layoutX="67.0" layoutY="263.0" prefHeight="38.0" prefWidth="86.0" text="Payment ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="tblIngridients" layoutX="30.0" layoutY="340.0" prefHeight="390.0" prefWidth="894.0">
+      <TableView fx:id="tblIngridients" layoutX="30.0" layoutY="340.0" prefHeight="390.0" prefWidth="626.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="114.4000244140625" text="ID" />
             <TableColumn fx:id="colName" prefWidth="178.39996337890625" text="Name" />
             <TableColumn fx:id="colPrice" prefWidth="192.79998779296875" text="Price" />
             <TableColumn fx:id="colQty" prefWidth="139.199951171875" text="Qty" />
-            <TableColumn fx:id="colTotal" prefWidth="136.0" text="Total" />
-            <TableColumn fx:id="colAction" prefWidth="183.199951171875" text="Action" />
          </columns>
       </TableView>
-      <Button layoutX="814.0" layoutY="749.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: FFC436;" text="Add">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <Label layoutX="62.0" layoutY="749.0" prefHeight="38.0" prefWidth="76.0" text="Net Total">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblNetTotal" layoutX="159.0" layoutY="752.0" prefHeight="32.0" prefWidth="142.0" />
       <Button layoutX="958.0" layoutY="264.0" mnemonicParsing="false" onAction="#saveButtonOnAction" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: FFC436;" text="Save">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -103,5 +89,12 @@
             <Image url="@../images/Annotation%202023-11-25%20103041.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblIngId" layoutX="138.0" layoutY="170.0" prefHeight="32.0" prefWidth="114.0" />
+      <Label layoutX="67.0" layoutY="59.0" prefHeight="23.0" prefWidth="57.0" text="Date">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="125.0" layoutY="54.0" prefHeight="32.0" prefWidth="114.0" />
    </children>
 </AnchorPane>

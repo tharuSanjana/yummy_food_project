@@ -23,7 +23,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="123.0" layoutY="148.0" prefHeight="38.0" prefWidth="156.0" />
       <Label layoutX="332.0" layoutY="154.0" prefHeight="26.0" prefWidth="46.0" text="Name" textFill="#1b1919">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -55,12 +54,12 @@
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <TableView fx:id="tblSupplier" layoutX="90.0" layoutY="245.0" prefHeight="431.0" prefWidth="483.0">
+      <TableView fx:id="tblSupplier" layoutX="90.0" layoutY="245.0" prefHeight="431.0" prefWidth="513.0">
          <columns>
-            <TableColumn fx:id="colId" prefWidth="124.800048828125" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="117.5999755859375" text="Name" />
-            <TableColumn fx:id="colTel" prefWidth="119.2000732421875" text="Phone number" />
-            <TableColumn prefWidth="119.19999999999999" text="Email" />
+            <TableColumn fx:id="colId" prefWidth="92.80001831054688" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="110.39999389648438" text="Name" />
+            <TableColumn fx:id="colTel" prefWidth="134.4000244140625" text="Phone number" />
+            <TableColumn fx:id="colEmail" prefWidth="176.0" text="Email" />
          </columns>
       </TableView>
       <Label layoutX="917.0" layoutY="154.0" prefHeight="26.0" prefWidth="66.0" text="Email" textFill="#363131">
@@ -84,5 +83,6 @@
             <Image url="@../images/Annotation%202023-11-24%20214518.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblId" layoutX="114.0" layoutY="159.0" prefHeight="26.0" prefWidth="122.0" />
    </children>
 </AnchorPane>

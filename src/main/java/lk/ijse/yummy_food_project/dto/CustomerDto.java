@@ -18,7 +18,7 @@ public class CustomerDto {
         this.userId = userId;
     }
 
-    public CustomerDto(String orderId, LocalDate date, String orderType, LocalTime time, String cusId, String driverId){}
+    public CustomerDto(){}
 
     public CustomerDto(String id, String name, String address, String tel, String userId) {
         this.id = id;

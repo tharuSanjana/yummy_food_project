@@ -88,13 +88,14 @@ public class DashboardFormController {
         stage.centerOnScreen();
     }
 
+
     @FXML
-    void suppIngDetails(ActionEvent event) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/supIngForm.fxml"));
+    void suppIngDetailsOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/ViewSupIngForm.fxml"));
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Supplier Manage");
+        stage.setTitle("SupIng Manage");
         stage.centerOnScreen();
     }
 

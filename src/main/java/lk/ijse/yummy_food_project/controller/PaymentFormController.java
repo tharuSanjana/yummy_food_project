@@ -9,29 +9,56 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.dto.PaymentDto;
+import lk.ijse.yummy_food_project.dto.CostPaymentDto;
+import lk.ijse.yummy_food_project.dto.incomePaymentDto;
 //import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
-import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
-import lk.ijse.yummy_food_project.dto.tm.SavePaymentTm;
+import lk.ijse.yummy_food_project.dto.tm.CostPaymentTm;
+import lk.ijse.yummy_food_project.dto.tm.IncomePaymentTm;
 import lk.ijse.yummy_food_project.model.PaymentModel;
 
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn;
-
-import javafx.scene.control.TableView;
 
 public class PaymentFormController {
+    @FXML
+    private TableColumn<?, ?> costAmount;
+
+    @FXML
+    private TableColumn<?, ?> costDate;
+
+    @FXML
+    private TableColumn<?, ?> costPId;
+
+    @FXML
+    private TableColumn<?, ?> costSupId;
+
+    @FXML
+    private TableColumn<?, ?> costSupName;
+
+    @FXML
+    private TableColumn<?, ?> incomeAmount;
+
+    @FXML
+    private TableColumn<?, ?> incomeCusId;
+
+    @FXML
+    private TableColumn<?, ?> incomeCusName;
+
+    @FXML
+    private TableColumn<?, ?> incomeDate;
+
+    @FXML
+    private TableColumn<?, ?> incomePId;
+
     @FXML
     private Label lblDate;
 
@@ -42,39 +69,15 @@ public class PaymentFormController {
     private Label lblTime;
 
     @FXML
+    private TableView<CostPaymentDto> tblCost;
+
+    @FXML
+    private TableView<incomePaymentDto> tblIncome;
+
+    @FXML
     private AnchorPane root;
 
-    @FXML
-    private TableView<PaymentDto> tblPayment;
-
-    @FXML
-    private TextField txtAmount;
-
-    @FXML
-    private TableColumn<?, ?> colAmount;
-
-    @FXML
-    private TableColumn<?, ?> colDate;
-
-    @FXML
-    private TableColumn<?, ?> colPiD;
-
-    @FXML
-    private TableColumn<?, ?> colCustomerId;
-
-    @FXML
-    private TableColumn<?, ?> colCustomerName;
-
-
-
-
-    @FXML
-    private Label lblCustomerId;
-
-    @FXML
-    private Label lblCustomerName;
-
-    private ObservableList<PaymentDto> obList = FXCollections.observableArrayList();
+    private ObservableList<incomePaymentDto> obList = FXCollections.observableArrayList();
     private PaymentModel pModel = new PaymentModel();
 
 
@@ -114,73 +117,73 @@ public class PaymentFormController {
         lblPaymentId.setText(oId);
         setDate();
         setCellValueFactory();
-       loadAllPayment();
+        loadAllIncomePayment();
+        loadAllCostPayment();
         setTime();
 
     }
-    @FXML
-    void saveOnButtonAction(ActionEvent event) {
-       /* String id = lblPaymentId.getText();
-        double amount = Double.parseDouble(txtAmount.getText());
-        String cusId = lblCustomerId.getText();
-        String cusName = lblCustomerName.getText();
-        LocalDate date = LocalDate.parse(lblDate.getText());
 
-        //var dto = new PaymentDto(id,amount,cusId,cusName,date);
-        PaymentDto savePaymentTm = new SavePaymentTm( id,amount,cusId,cusName,date);
 
-        obList.add(savePaymentTm);
-
-        tblPayment.setItems(obList);*/
-
-       /* try{
-            boolean flag = pModel.savePayment(dto);
-
-            if(flag){
-                new Alert(Alert.AlertType.CONFIRMATION, "payment saved!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }*/
-    }
-    private void clearFields() {
-        lblPaymentId.setText("");
-        txtAmount.setText("");
-        lblDate.setText("");
-
-    }
     private void setCellValueFactory(){
-       /* colPiD.setCellValueFactory(new PropertyValueFactory<>("p_id"));
-        colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("cus_id"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));*/
+       incomeDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+       incomePId.setCellValueFactory(new PropertyValueFactory<>("pId"));
+       incomeCusId.setCellValueFactory(new PropertyValueFactory<>("cId"));
+       incomeCusName.setCellValueFactory(new PropertyValueFactory<>("CName"));
+       incomeAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+       costDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+       costPId.setCellValueFactory(new PropertyValueFactory<>("PId"));
+       costSupId.setCellValueFactory(new PropertyValueFactory<>("sId"));
+       costSupName.setCellValueFactory(new PropertyValueFactory<>("sName"));
+       costAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
     }
 
-    private void loadAllPayment(){
-        /*var model = new PaymentModel();
+    private void loadAllIncomePayment(){
+        var model = new PaymentModel();
 
-        ObservableList<PaymentDto> obList = FXCollections.observableArrayList();
+        ObservableList<incomePaymentDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<PaymentDto> dtoList = model.getAllPayment();
+            List<incomePaymentDto> dtoList = model.getAllIncomePayment();
 
-            for (PaymentDto dto : dtoList){
+            for (incomePaymentDto dto : dtoList){
                 obList.add(
-                        new PaymentTm(
-                                dto.getId(),
-                                dto.getAmount(),
-                                dto.getCusId(),
-                                dto.getCusName(),
-                                dto.getDate()
+                        new IncomePaymentTm(
+                               dto.getDate(),
+                                dto.getPId(),
+                                dto.getcId(),
+                                dto.getCName(),
+                                dto.getAmount()
                         )
                 );
             }
-            tblPayment.setItems(obList);
+            tblIncome.setItems(obList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
+        }
+    }
+    private void loadAllCostPayment(){
+        var model = new PaymentModel();
+
+        ObservableList<CostPaymentDto> obList = FXCollections.observableArrayList();
+
+        try{
+            ArrayList<CostPaymentDto> dtoList = model.getAllCostPayment();
+
+            for (CostPaymentDto dto : dtoList){
+                obList.add(
+                        new CostPaymentTm(
+                                dto.getDate(),
+                                dto.getPId(),
+                                dto.getSId(),
+                                dto.getSName(),
+                               dto.getAmount()
+                        )
+                );
+            }
+            tblCost.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

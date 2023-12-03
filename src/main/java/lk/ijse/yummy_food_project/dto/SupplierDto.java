@@ -11,7 +11,15 @@ public class SupplierDto {
     private String name;
 
     private String tel;
+private String email;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
@@ -19,6 +27,7 @@ public class SupplierDto {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -49,11 +58,10 @@ public class SupplierDto {
     }
 
 
-
-    public SupplierDto(String id, String name,  String tel) {
+    public SupplierDto(String id, String name, String tel, String email) {
         this.id = id;
         this.name = name;
         this.tel = tel;
-
+        this.email = email;
     }
 }

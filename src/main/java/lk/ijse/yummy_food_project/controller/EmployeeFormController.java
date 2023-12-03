@@ -231,8 +231,8 @@ public class EmployeeFormController {
    }
 
     @FXML
-    void deleteButtonOnAction(ActionEvent event) {
-        boolean isEmployeeValid = validateEmployee();
+    void deleteButtonOnAction(ActionEvent event) throws IOException {
+       /* boolean isEmployeeValid = validateEmployee();
         if(isEmployeeValid) {
             String id = lblEmpId.getText();
             try {
@@ -243,7 +243,18 @@ public class EmployeeFormController {
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }
+        }*/
+        URL resource = this.getClass().getResource("/view/deleteEmployeeform.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Update employee");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setResizable(false);
+        stage.show();
     }
     private  boolean validateEmployee(){
         String id = lblEmpId.getText();

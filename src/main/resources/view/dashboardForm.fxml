@@ -51,7 +51,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="106.0" layoutY="684.0" mnemonicParsing="false" onAction="#suppIngDetails" prefHeight="50.0" prefWidth="189.0" style="-fx-background-color: #F76E11;" text="Supplier Ingredient" textFill="#2b0505">
+            <Button layoutX="106.0" layoutY="684.0" mnemonicParsing="false" onAction="#suppIngDetailsOnAction" prefHeight="50.0" prefWidth="189.0" style="-fx-background-color: #F76E11;" text="Supplier Ingredient" textFill="#2b0505">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

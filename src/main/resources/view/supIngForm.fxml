@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,8 +28,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="172.0" layoutY="143.0" onAction="#cmbSupplierOnAction" prefWidth="150.0" />
-      <Label fx:id="lblSupName" layoutX="175.0" layoutY="206.0" prefHeight="28.0" prefWidth="158.0" textFill="#f2eeee" />
+      <ComboBox fx:id="cmbSupId" layoutX="172.0" layoutY="143.0" onAction="#cmbSupplierOnAction" prefWidth="150.0" />
+      <Label fx:id="lblSupName" layoutX="175.0" layoutY="206.0" prefHeight="28.0" prefWidth="158.0" textFill="#380505" />
       <Button layoutX="368.0" layoutY="169.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" style="-fx-background-color: FC7300;" text="New">
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -52,8 +51,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblIngName" layoutX="950.0" layoutY="204.0" prefHeight="31.0" prefWidth="91.0" />
-      <ComboBox fx:id="cmbIngId" layoutX="921.0" layoutY="137.0" onAction="#cmbIngOnAction" prefWidth="150.0" />
       <Button layoutX="1088.0" layoutY="169.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" style="-fx-background-color: FC7300;" text="New">
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -69,22 +66,18 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPrice" layoutX="1279.0" layoutY="125.0" />
-      <TextField fx:id="txtQty" layoutX="1279.0" layoutY="207.0" />
-      <TableView fx:id="tblSupIng" layoutX="35.0" layoutY="309.0" prefHeight="406.0" prefWidth="1222.0">
+      <TableView fx:id="tblSupIng" layoutX="35.0" layoutY="309.0" prefHeight="406.0" prefWidth="970.0">
          <columns>
-            <TableColumn fx:id="colIngId" prefWidth="132.00006103515625" text="Payment ID" />
-            <TableColumn fx:id="colIngName" prefWidth="135.9998779296875" text="Supplier ID" />
-            <TableColumn fx:id="colQty" prefWidth="135.9998779296875" text="Supplier name" />
-            <TableColumn fx:id="colPrice" prefWidth="135.9998779296875" text="Ingredients ID" />
-            <TableColumn fx:id="colTotal" prefWidth="114.4000244140625" text="Ingredients name" />
-            <TableColumn fx:id="colAction" prefWidth="139.199951171875" text="Qty" />
-            <TableColumn fx:id="colAction1" prefWidth="139.199951171875" text="Unite price" />
-            <TableColumn fx:id="colAction11" prefWidth="139.199951171875" text="Total" />
-            <TableColumn fx:id="colAction111" prefWidth="163.199951171875" text="Action" />
+            <TableColumn fx:id="colSupName" prefWidth="135.9998779296875" text="Supplier name" />
+            <TableColumn fx:id="colIngId" prefWidth="135.9998779296875" text="Ingredient ID" />
+            <TableColumn fx:id="colIngName" prefWidth="114.4000244140625" text="Ingredient name" />
+            <TableColumn fx:id="colQty" prefWidth="139.199951171875" text="Qty" />
+            <TableColumn fx:id="colUnitePrice" prefWidth="139.199951171875" text="Unite price" />
+            <TableColumn fx:id="colTotal" prefWidth="139.199951171875" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="163.199951171875" text="Action" />
          </columns>
       </TableView>
-      <Button layoutX="1395.0" layoutY="728.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="34.0" prefWidth="79.0" style="-fx-background-color: FFC436;" text="Back">
+      <Button fx:id="btnCancel" layoutX="1395.0" layoutY="728.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="34.0" prefWidth="79.0" style="-fx-background-color: FFC436;" text="cancel">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -100,12 +93,12 @@
          </font>
       </Label>
       <Label fx:id="lblNetTotal" layoutX="179.0" layoutY="742.0" prefHeight="28.0" prefWidth="74.0" />
-      <Button layoutX="1287.0" layoutY="731.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: FFC436;" text="Save">
+      <Button layoutX="1287.0" layoutY="731.0" mnemonicParsing="false" onAction="#saveButtonOnAction" prefHeight="34.0" prefWidth="70.0" style="-fx-background-color: FFC436;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <CheckBox layoutX="628.0" layoutY="747.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Paid">
+      <CheckBox fx:id="checkBoxPaid" layoutX="628.0" layoutY="747.0" mnemonicParsing="false" onAction="#checkBoxOnAction" prefHeight="26.0" prefWidth="70.0" text="Paid">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -115,5 +108,9 @@
             <Image url="@../images/Annotation%202023-11-25%20023143.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblIngName" layoutX="944.0" layoutY="207.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label fx:id="lblIngPrice" layoutX="1278.0" layoutY="123.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label fx:id="lblQty" layoutX="1286.0" layoutY="207.0" prefHeight="26.0" prefWidth="94.0" />
+      <ComboBox fx:id="cmbIng" layoutX="929.0" layoutY="136.0" onAction="#cmbIngOnAction" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.yummy_food_project.controller.ViewSupIngController">
+   <children>
+      <TableView fx:id="tblSupIng" layoutX="192.0" layoutY="140.0" prefHeight="508.0" prefWidth="776.0">
+         <columns>
+            <TableColumn fx:id="colSupId" prefWidth="168.79995727539062" text="Supplier ID" />
+            <TableColumn fx:id="colSupName" prefWidth="176.00009155273438" text="Supplier name" />
+            <TableColumn fx:id="colIngId" prefWidth="181.60003662109375" text="Ingredient ID" />
+            <TableColumn fx:id="colIngName" prefWidth="132.79998779296875" text="Ingredient name" />
+            <TableColumn fx:id="colTotal" prefWidth="132.0" text="Total" />
+         </columns>
+      </TableView>
+      <Button layoutX="1328.0" layoutY="53.0" mnemonicParsing="false" onAction="#addOrderButtonOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: 00C897;" textFill="#12b147">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fx:id="addButtonOnAction" fitHeight="25.0" fitWidth="27.0">
+               <image>
+                  <Image url="@../images/Annotation%202023-11-24%20220249.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="1405.0" layoutY="738.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="34.0" prefWidth="79.0" style="-fx-background-color: FFC436;" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

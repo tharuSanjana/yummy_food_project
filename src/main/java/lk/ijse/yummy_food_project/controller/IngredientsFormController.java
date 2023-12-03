@@ -5,19 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Optional;
 
 
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.dto.Ingredients1Dto;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
 import lk.ijse.yummy_food_project.dto.tm.IngredientsTm;
 import lk.ijse.yummy_food_project.model.IngredientsModel;
@@ -25,7 +27,9 @@ import lk.ijse.yummy_food_project.model.PaymentModel;
 
 public class IngredientsFormController {
     @FXML
-    private TableColumn<?, ?> colAction;
+    private Label lblDate;
+    @FXML
+    private Label lblIngId;
 
     @FXML
     private TableColumn<?, ?> colId;
@@ -38,9 +42,6 @@ public class IngredientsFormController {
 
     @FXML
     private TableColumn<?, ?> colQty;
-
-    @FXML
-    private TextField txtId;
 
     @FXML
     private AnchorPane root;
@@ -56,12 +57,11 @@ public class IngredientsFormController {
 
     @FXML
     private TextField txtQty;
-    @FXML
-    private TableColumn<?, ?> colTotal;
-    @FXML
-    private Label lblNetTotal;
+
     @FXML
     private Label lblPaymentId;
+    @FXML
+    private TableColumn<?, ?> colPId;
     private PaymentModel pModel = new PaymentModel();
 
     private IngredientsModel ingModel = new IngredientsModel();
@@ -70,18 +70,18 @@ public class IngredientsFormController {
 
     @FXML
     void saveButtonOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblIngId.getText();
         String name = txtName.getText();
         double price = Double.parseDouble(txtPrice.getText());
         double qty = Double.parseDouble(txtQty.getText());
         String pId = lblPaymentId.getText();
+        LocalDate date = LocalDate.parse(lblDate.getText());
 
+        var dto = new IngredientsDto(id, name, price, qty,pId);
 
-        var dto = new Ingredients1Dto(id, name, price, qty, pId);
-        // var tm = new IngredientsTm(id,name,price,qty,btn);
         try {
-            // boolean flag = ingModel.saveIngredients();
-            boolean flag = ingModel.saveIngredients(dto);
+
+            boolean flag = ingModel.saveIngredients(dto,date);
 
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Ingredients saved!").show();
@@ -95,8 +95,18 @@ public class IngredientsFormController {
 
 
     @FXML
-    void updateButtonOnAction(ActionEvent event) {
+    void updateButtonOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/updateIngredientform.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Update employee");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
 
+        stage.setResizable(false);
+        stage.show();
     }
     public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml"));
@@ -114,13 +124,14 @@ public class IngredientsFormController {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        //colPId.setCellValueFactory(new PropertyValueFactory<>("pId"));
         //colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+       // colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
 
     private void clearFields() {
-        txtId.setText("");
+        lblIngId.setText("");
         txtName.setText("");
         txtPrice.setText("");
         txtQty.setText("");
@@ -128,8 +139,10 @@ public class IngredientsFormController {
     }
 
     public void initialize() {
-        setCellValueFactory();
+        setDate();
+        generateIngredientId();
         generatePaymentId();
+        setCellValueFactory();
          loadAllIngredients();
         //  tableListener();
     }
@@ -168,7 +181,8 @@ public class IngredientsFormController {
                                 dto.getId(),
                                 dto.getName(),
                                 dto.getPrice(),
-                                dto.getQty()
+                                dto.getQty(),
+                                dto.getpId()
 
                         )
                 );
@@ -177,5 +191,19 @@ public class IngredientsFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    private String generateIngredientId () {
+        String ingId = null;
+        try {
+            ingId = ingModel.getGenerateIngredientId();
+            lblIngId.setText(ingId);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+        return ingId;
+    }
+    private void setDate(){
+        lblDate.setText(String.valueOf(LocalDate.now()));
     }
 }

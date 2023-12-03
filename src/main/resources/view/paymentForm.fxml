@@ -47,32 +47,30 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="636.0">
                      <children>
-                        <TableView prefHeight="350.0" prefWidth="743.0">
+                        <TableView fx:id="tblIncome" prefHeight="350.0" prefWidth="743.0">
                           <columns>
-                            <TableColumn prefWidth="103.19997787475586" text="Date" />
-                            <TableColumn prefWidth="116.00001525878906" text="Time" />
-                              <TableColumn prefWidth="136.79998779296875" text="Payment ID" />
-                              <TableColumn prefWidth="136.0" text="Customer ID" />
-                              <TableColumn prefWidth="110.39996337890625" text="Customer name" />
-                              <TableColumn prefWidth="144.7999267578125" text="Amount" />
+                            <TableColumn fx:id="incomeDate" prefWidth="103.19997787475586" text="Date" />
+                              <TableColumn fx:id="incomePId" prefWidth="136.79998779296875" text="Payment ID" />
+                              <TableColumn fx:id="incomeCusId" prefWidth="136.0" text="Customer ID" />
+                              <TableColumn fx:id="incomeCusName" prefWidth="110.39996337890625" text="Customer name" />
+                              <TableColumn fx:id="incomeAmount" prefWidth="144.7999267578125" text="Amount" />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="outcome">
+          <Tab text="cost">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="-1.0" layoutY="-2.0" prefHeight="350.0" prefWidth="743.0">
+                        <TableView fx:id="tblCost" layoutX="-1.0" layoutY="-2.0" prefHeight="350.0" prefWidth="743.0">
                           <columns>
-                            <TableColumn prefWidth="92.79998397827148" text="Date" />
-                            <TableColumn prefWidth="97.60000610351562" text="Time" />
-                              <TableColumn prefWidth="120.00001525878906" text="Payment ID" />
-                              <TableColumn prefWidth="128.79998779296875" text="Supplier ID" />
-                              <TableColumn prefWidth="149.5999755859375" text="Supplier name" />
-                              <TableColumn prefWidth="156.00006103515625" text="Amount" />
+                            <TableColumn fx:id="costDate" prefWidth="102.4000244140625" text="Date" />
+                              <TableColumn fx:id="costPId" prefWidth="155.20001220703125" text="Payment ID" />
+                              <TableColumn fx:id="costSupId" prefWidth="155.99993896484375" text="Supplier ID" />
+                              <TableColumn fx:id="costSupName" prefWidth="161.60003662109375" text="Supplier name" />
+                              <TableColumn fx:id="costAmount" prefWidth="172.0" text="Amount" />
                           </columns>
                         </TableView>
                      </children>

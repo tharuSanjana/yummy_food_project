@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 
@@ -33,6 +34,7 @@ public class DeleteCustomerFormController {
     @FXML
     private TextField txtTel;
 private CustomerModel cusModel = new CustomerModel();
+CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
     public void initialize() {
         populateComboBox();
@@ -62,7 +64,7 @@ private CustomerModel cusModel = new CustomerModel();
     void cmbCusIdOnAction(ActionEvent event) {
         String cusId =  cmbCusId.getValue();
         try{
-            CustomerDto cusDto = cusModel.searchCustomerId(cusId);
+            CustomerDto cusDto = customerDAO.searchCustomerId(cusId);
             txtName.setText(cusDto.getName());
             txtAddress.setText(cusDto.getAddress());
             txtTel.setText(cusDto.getTel());
@@ -73,7 +75,7 @@ private CustomerModel cusModel = new CustomerModel();
     }
     public void populateComboBox() {
 
-        List<String> dataFromDB = cusModel.getCmbCustomerId();
+        List<String> dataFromDB = customerDAO.getCmbCustomerId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbCusId.setItems(observableData);
 
@@ -89,7 +91,7 @@ private CustomerModel cusModel = new CustomerModel();
         String id = cmbCusId.getValue();
 
         try {
-            boolean flag = cusModel.deleteCustomer(id);
+            boolean flag = customerDAO.deleteCustomer(id);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
             } else {
@@ -103,7 +105,7 @@ private CustomerModel cusModel = new CustomerModel();
     public void populateComboBoxUser() {
 
         try {
-            List<String> dataFromDB = cusModel.getCmbUserId();
+            List<String> dataFromDB = customerDAO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

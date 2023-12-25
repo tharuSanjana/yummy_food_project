@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerModel {
-public ArrayList<CustomerDto> getAllCustomer() throws SQLException {
+/*public ArrayList<CustomerDto> getAllCustomer() throws SQLException {
     Connection connection= DbConnection.getInstance().getConnection();
 
     String sql = "SELECT * FROM customer";
@@ -131,7 +131,7 @@ public String getGenerateCustomerId() throws SQLException {
         }
         return  cusDto;*/
     }
-    public List<String> getCmbUserId() throws SQLException {
+   /* public List<String> getCmbUserId() throws SQLException {
         Connection connection = null;
         List<String> userIds = new ArrayList<>();
         String query = "SELECT user_id FROM user";
@@ -176,5 +176,5 @@ public String getGenerateCustomerId() throws SQLException {
         }
 
         return cusIds;
-    }
-}
+    }*/
+//}

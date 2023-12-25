@@ -1,5 +1,6 @@
-package lk.ijse.yummy_food_project.model;
+package lk.ijse.yummy_food_project.DAO;
 
+import lk.ijse.yummy_food_project.SqlUtil;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 
@@ -10,10 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeModel {
-    /*public boolean saveEmp(EmployeeDto dto) throws SQLException {
+public class EmployeeDAOImpl {
+    SqlUtil s = new SqlUtil();
+    public boolean saveEmp(EmployeeDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "INSERT INTO employee VALUES(?,?,?,?,?,?)";
+        //s.test(sql,)
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1,dto.getId());
         pstm.setString(2, dto.getName());
@@ -66,7 +69,7 @@ public class EmployeeModel {
         } finally {
 
             if (connection != null) {
-               // connection.close();
+                // connection.close();
             }
         }
 
@@ -97,79 +100,24 @@ public class EmployeeModel {
 
         return pstm.executeUpdate() > 0;
     }
-   public String searchEmployeeId(String dId) throws SQLException {
-       /* Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT name FROM employee WHERE emp_type = 'Driver'";
+    public String searchEmployeeId(String dId) throws SQLException {
+       Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "SELECT name FROM employee WHERE emp_id = ? AND emp_type = 'Driver'";
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1,dId);
+        pstm.setString(1, dId);
 
         ResultSet resultSet = pstm.executeQuery();
-       // EmployeeDto empDto = null;
+        String empName = null;
 
-        if(resultSet.next()){
-           // empDto = new EmployeeDto(
-                 //  String emp_id = resultSet.getString(1);
-                   String emp_name =  resultSet.getString(1);
-                  /* String address = resultSet.getString(3);
-                   String tel =   resultSet.getString(4);
-                   String emp_type = resultSet.getString(5);
-                   String user_id = resultSet.getString(6);*/
+        if (resultSet.next()) {
+            empName = resultSet.getString("name");
+        }
 
-                  // empDto=new EmployeeDto(emp_id,emp_name,address,tel,emp_type,user_id);*/
-      /* Connection connection = DbConnection.getInstance().getConnection();
-       String sql = "SELECT name FROM employee WHERE emp_id = ? AND emp_type = 'Driver'";
-       PreparedStatement pstm = connection.prepareStatement(sql);
-       pstm.setString(1, dId);
+        return empName;
 
-       ResultSet resultSet = pstm.executeQuery();
-       String empName = null;
+    }
 
-       if (resultSet.next()) {
-           empName = resultSet.getString("name");
-       }
-
-       return empName;
-
-   }
- /*  public ArrayList<EmployeeDto> emptyEmployee() throws SQLException {
-
-       Connection   connection = DbConnection.getInstance().getConnection();
-      // List<String> empIds = new ArrayList<>();
-        String sql = "SELECT * FROM employee WHERE emp_id ='noEmployee'";
-       PreparedStatement pstm = connection.prepareStatement(sql);
-       ResultSet resultSet = pstm.executeQuery();
-       ArrayList<EmployeeDto> dtoList = new ArrayList<>();
-       while (resultSet.next()) {
-           dtoList.add(
-                   new EmployeeDto(
-                           resultSet.getString(1),
-                           resultSet.getString(2),
-                           resultSet.getString(3),
-                           resultSet.getString(4),
-                           resultSet.getString(5),
-                           resultSet.getString(6)
-           )
-           );
-       }
-       return dtoList;
-   }*/
-/* public String emptyEmployeeId(String dId) throws SQLException {
-     Connection connection = DbConnection.getInstance().getConnection();
-     String sql = "SELECT * FROM employee WHERE emp_id =?";
-     PreparedStatement pstm = connection.prepareStatement(sql);
-     pstm.setString(1, dId);
-
-     ResultSet resultSet = pstm.executeQuery();
-     String empName = null;
-
-     if (resultSet.next()) {
-         empName = resultSet.getString("name");
-     }
-
-     return empName;
-
- }*/
-    /*public String getGenerateEmployeeId() throws SQLException {
+    public String getGenerateEmployeeId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT emp_id FROM employee ORDER BY emp_id DESC LIMIT 1";
@@ -236,9 +184,5 @@ public class EmployeeModel {
         }
 
         return empIds;
-    }*/
     }
-   //}
-
-
-
+}

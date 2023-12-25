@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.dto.UserDto;
@@ -87,6 +88,7 @@ public class CustomerFormController {
     private EmployeeModel empModel = new EmployeeModel();
     private LoginModel loginModel = new LoginModel();
     //private UserDto userDto = new UserDto();
+    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
     public void initialize() {
         populateComboBox();
@@ -102,12 +104,12 @@ public class CustomerFormController {
         colUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
     private void loadAllCustomer(){
-       var model = new CustomerModel();
+       //var model = new CustomerModel();
 
         ObservableList<CustomerDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<CustomerDto> dtoList = model.getAllCustomer();
+            List<CustomerDto> dtoList = customerDAO.getAllCustomer();
 
             for (CustomerDto dto : dtoList){
                 obList.add(
@@ -147,7 +149,7 @@ public class CustomerFormController {
             var dto = new CustomerDto(id, name, address, tel, userId);
 
             try {
-                boolean flag = cusModel.saveCustomer(dto);
+                boolean flag = customerDAO.saveCustomer(dto);
 
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
@@ -287,7 +289,7 @@ public class CustomerFormController {
     private String generateCustomerId(){
         String cusId = null;
         try {
-            cusId = cusModel.getGenerateCustomerId();
+            cusId = customerDAO.getGenerateCustomerId();
             lblId.setText(cusId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -313,7 +315,7 @@ public class CustomerFormController {
     public void populateComboBox() {
 
         try {
-            List<String> dataFromDB = cusModel.getCmbUserId();
+            List<String> dataFromDB = customerDAO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

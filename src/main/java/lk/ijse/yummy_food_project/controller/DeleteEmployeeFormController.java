@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
@@ -38,6 +40,8 @@ public class DeleteEmployeeFormController {
     private TextField txtTy;
 private EmployeeModel empModel = new EmployeeModel();
 private CustomerModel cusModel = new CustomerModel();
+CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
     public void initialize() {
         populateComboBoxEmpId();
         populateComboBoxUser();
@@ -64,7 +68,7 @@ private CustomerModel cusModel = new CustomerModel();
     void cmbEmpIdOnAction(ActionEvent event) {
         String empId =  cmbEmpId.getValue();
         try{
-            EmployeeDto empDto = empModel.searchEmpId(empId);
+            EmployeeDto empDto = employeeDAO.searchEmpId(empId);
             txtName.setText(empDto.getName());
             txtAddress.setText(empDto.getAddress());
             txtTel.setText(empDto.getTel());
@@ -92,7 +96,7 @@ private CustomerModel cusModel = new CustomerModel();
     void okButtonOnAction(ActionEvent event) {
         String id = cmbEmpId.getValue();
         try {
-            boolean flag = empModel.deleteEmployee(id);
+            boolean flag = employeeDAO.deleteEmployee(id);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
             }
@@ -102,14 +106,14 @@ private CustomerModel cusModel = new CustomerModel();
     }
     public void populateComboBoxEmpId() {
 
-        List<String> dataFromDB = empModel.getCmbEmpId();
+        List<String> dataFromDB = employeeDAO.getCmbEmpId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbEmpId.setItems(observableData);
     }
     public void populateComboBoxUser() {
 
         try {
-            List<String> dataFromDB = cusModel.getCmbUserId();
+            List<String> dataFromDB = customerDAO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

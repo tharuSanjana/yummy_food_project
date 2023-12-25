@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Optional;
 
 
+import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.dto.FoodDto;
@@ -124,6 +126,8 @@ public class OrderFormController {
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
     private PlaceOrderModel placeOrderModel = new PlaceOrderModel();
     private PaymentModel pModel = new PaymentModel();
+    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
     public void initialize(){
 
@@ -245,7 +249,7 @@ public void populateComboBox() {
     void cmbCustomerOnAction(ActionEvent event) {
         String cusId = cmbCustomerId.getValue();
         try{
-            CustomerDto cusDto = cusModel.searchCustomerId(cusId);
+            CustomerDto cusDto = customerDAO.searchCustomerId(cusId);
             lblCusName.setText(cusDto.getName());
 
         } catch (SQLException e) {
@@ -264,7 +268,7 @@ public void populateComboBox() {
 
         }else {
             try {
-                String driverName = empModel.searchEmployeeId(empId);
+                String driverName = employeeDAO.searchEmployeeId(empId);
                 if (driverName != null) {
                     lblDriverName.setText(driverName);
 

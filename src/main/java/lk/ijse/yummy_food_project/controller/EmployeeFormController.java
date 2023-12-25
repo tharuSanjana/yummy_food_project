@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.dto.tm.EmployeeTm;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
@@ -79,6 +80,7 @@ public class EmployeeFormController {
     @FXML
     private ComboBox<String> cmbUserId = new ComboBox<>();
     private EmployeeModel empModel = new EmployeeModel();
+    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
       // cmbUserId = new ComboBox<>();
    // private UserModel userModel = new UserModel();
 
@@ -114,7 +116,7 @@ public class EmployeeFormController {
             var dto = new EmployeeDto(id, name, address, tel, type, userId);
 
             try {
-                boolean flag = empModel.saveEmp(dto);
+                boolean flag = employeeDAO.saveEmp(dto);
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!").show();
                     clearFields();
@@ -144,11 +146,11 @@ public class EmployeeFormController {
     }
 
     public void loadAllEmployee(){
-        var model = new EmployeeModel();
+        //var model = new EmployeeModel();
 
         ObservableList<EmployeeDto>obList = FXCollections.observableArrayList();
         try{
-            List<EmployeeDto>dtoList = model.getAllEmployee();
+            List<EmployeeDto>dtoList = employeeDAO.getAllEmployee();
             for(EmployeeDto dto:dtoList){
                 obList.add(
                         new EmployeeTm(
@@ -170,7 +172,7 @@ public class EmployeeFormController {
     public void populateComboBox() {
 
         try {
-            List<String> dataFromDB = empModel.getCmbUserId();
+            List<String> dataFromDB = employeeDAO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {
@@ -196,27 +198,7 @@ public class EmployeeFormController {
     }*/
    @FXML
    void updateButtonOnAction(ActionEvent event) throws IOException {
-       /*boolean isEmployeeValid = validateEmployee();
-       if(isEmployeeValid) {
-           String id = lblEmpId.getText();
-           String name = txtName.getText();
-           String address = txtAddress.getText();
-           String tel = txtTel.getText();
-           String type = txtType.getText();
-           String userId = cmbUserId.getValue();
 
-           var dto = new EmployeeDto(id, name, address, tel, type, userId);
-           try {
-               boolean flag = empModel.updateEmployee(dto);
-               if (flag) {
-                   new Alert(Alert.AlertType.CONFIRMATION, "Employee updated!").show();
-                   clearFields();
-               }
-
-           } catch (SQLException e) {
-               new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-           }
-       }*/
        URL resource = this.getClass().getResource("/view/updateEmployeeform.fxml");
        FXMLLoader fxmlLoader = new FXMLLoader(resource);
        Parent load = fxmlLoader.load();
@@ -232,18 +214,7 @@ public class EmployeeFormController {
 
     @FXML
     void deleteButtonOnAction(ActionEvent event) throws IOException {
-       /* boolean isEmployeeValid = validateEmployee();
-        if(isEmployeeValid) {
-            String id = lblEmpId.getText();
-            try {
-                boolean flag = empModel.deleteEmployee(id);
-                if (flag) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            }
-        }*/
+
         URL resource = this.getClass().getResource("/view/deleteEmployeeform.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
         Parent load = fxmlLoader.load();
@@ -265,7 +236,7 @@ public class EmployeeFormController {
         }
 
         String name = txtName.getText();
-        boolean isNameValid = Pattern.matches("[A-Za-z]{4,}",name);
+        boolean isNameValid = Pattern.matches("[A-Za-z]{5,}",name);
         if(!isNameValid){
             new Alert(Alert.AlertType.ERROR,"Invalid employee name").show();
             return  false;
@@ -290,7 +261,7 @@ public class EmployeeFormController {
     private String generateEmployeeId(){
         String empId = null;
         try {
-            empId= empModel.getGenerateEmployeeId();
+            empId= employeeDAO.getGenerateEmployeeId();
             lblEmpId.setText(empId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

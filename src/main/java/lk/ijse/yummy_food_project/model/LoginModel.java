@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginModel {
-    public UserDto searchUserId(String id) throws SQLException {
+   /* public UserDto searchUserId(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "SELECT * FROM user WHERE user_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -27,5 +27,5 @@ public class LoginModel {
             );
         }
         return  userDto;
-    }
+    }*/
 }

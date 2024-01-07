@@ -7,18 +7,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.db.DbConnection;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.IngredientsDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.PaymentDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.IngredientsBO;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
 import lk.ijse.yummy_food_project.model.IngredientsModel;
 import lk.ijse.yummy_food_project.model.PaymentModel;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateIngredientFormController {
@@ -47,6 +47,11 @@ public class UpdateIngredientFormController {
 
     private IngredientsModel ingModel = new IngredientsModel();
     private PaymentModel pModel = new PaymentModel();
+    //IngredientsDAOImpl ingredientsDAO = new IngredientsDAOImpl();
+    IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
+    //PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
+    PaymentBO paymentBO = (PaymentBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.PAYMENT);
+
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -75,7 +80,7 @@ public class UpdateIngredientFormController {
 
         try{
 
-            IngredientsDto ingDto = ingModel.searchIngredientId(ingId);
+            IngredientsDto ingDto = ingredientsBO.searchIngredientId(ingId);
             System.out.println(ingDto.getName());
             txtName.setText(ingDto.getName());
             txtPrice.setText(String.valueOf(ingDto.getPrice()));
@@ -106,7 +111,7 @@ public class UpdateIngredientFormController {
 
         var dto = new IngredientsDto(ingId, name,price,qty,pId);
         try {
-            boolean flag = ingModel.updateIngredeient(dto,date);
+            boolean flag = ingredientsBO.updateIngredeient(dto,date);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
                 clearFields();
@@ -120,7 +125,7 @@ public class UpdateIngredientFormController {
     }
     public void populateComboBoxIngId() throws SQLException {
 
-        List<String> dataFromDB = ingModel.getCmbIngId();
+        List<String> dataFromDB = ingredientsBO.getCmbIngId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbId.setItems(observableData);
     }
@@ -133,7 +138,7 @@ public class UpdateIngredientFormController {
     }
     public void populateComboBoxPId() throws SQLException {
 
-        List<String> dataFromDB = pModel.getCmbPId();
+        List<String> dataFromDB = paymentBO.getCmbPId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbPId.setItems(observableData);
     }

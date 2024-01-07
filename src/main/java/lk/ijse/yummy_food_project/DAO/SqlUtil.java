@@ -1,4 +1,4 @@
-package lk.ijse.yummy_food_project;
+package lk.ijse.yummy_food_project.DAO;
 
 import lk.ijse.yummy_food_project.db.DbConnection;
 

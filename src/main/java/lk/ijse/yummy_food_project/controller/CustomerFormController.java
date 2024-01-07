@@ -20,11 +20,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.LoginDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
+import lk.ijse.yummy_food_project.bo.Custom.LoginBO;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.dto.UserDto;
 import lk.ijse.yummy_food_project.dto.tm.CustomerTm;
+import lk.ijse.yummy_food_project.entity.User;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
 import lk.ijse.yummy_food_project.model.LoginModel;
@@ -88,7 +93,10 @@ public class CustomerFormController {
     private EmployeeModel empModel = new EmployeeModel();
     private LoginModel loginModel = new LoginModel();
     //private UserDto userDto = new UserDto();
-    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+   // CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+    CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
+    //LoginDAOImpl loginDAO = new LoginDAOImpl();
+    LoginBO loginBO = (LoginBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.LOGIN);
 
     public void initialize() {
         populateComboBox();
@@ -109,7 +117,7 @@ public class CustomerFormController {
         ObservableList<CustomerDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<CustomerDto> dtoList = customerDAO.getAllCustomer();
+            List<CustomerDto> dtoList = customerBO.getAllCustomer();
 
             for (CustomerDto dto : dtoList){
                 obList.add(
@@ -149,7 +157,7 @@ public class CustomerFormController {
             var dto = new CustomerDto(id, name, address, tel, userId);
 
             try {
-                boolean flag = customerDAO.saveCustomer(dto);
+                boolean flag = customerBO.saveCustomer(dto);
 
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
@@ -289,7 +297,7 @@ public class CustomerFormController {
     private String generateCustomerId(){
         String cusId = null;
         try {
-            cusId = customerDAO.getGenerateCustomerId();
+            cusId = customerBO.getGenerateCustomerId();
             lblId.setText(cusId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -303,8 +311,8 @@ public class CustomerFormController {
         void cmbUserIdOnAction(ActionEvent event) {
             String userId = cmbUserId.getValue();
             try{
-                UserDto userDto = loginModel.searchUserId(userId);
-                lblUserId.setText(userDto.getUser_id());
+                User userDto = loginBO.searchUserId(userId);
+                //lblUserId.setText(userDto.getUser_id());
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -315,7 +323,7 @@ public class CustomerFormController {
     public void populateComboBox() {
 
         try {
-            List<String> dataFromDB = customerDAO.getCmbUserId();
+            List<String> dataFromDB = customerBO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

@@ -12,9 +12,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.scene.control.Button;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.UserDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
+import lk.ijse.yummy_food_project.bo.Custom.UserBO;
 import lk.ijse.yummy_food_project.dto.UserDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
-import lk.ijse.yummy_food_project.model.UserModel;
 
 import javafx.scene.control.TextField;
 
@@ -31,6 +34,9 @@ public class LoginFormController {
     @FXML
     private TextField txtUserName;
     private CustomerModel cusModel = new CustomerModel();
+   // UserDAOImpl userDAO = new UserDAOImpl();
+    UserBO userBO = (UserBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.USER);
+
 
 
     @FXML
@@ -41,7 +47,7 @@ public class LoginFormController {
         UserDto dto = new UserDto(username,pw);
 
 
-        boolean flag=UserModel.checkUsernamePw(dto);
+        boolean flag=userBO.checkUsernamePw(dto);
 
        // boolean flag;
         if(flag==true) {

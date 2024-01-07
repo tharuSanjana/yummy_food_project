@@ -8,7 +8,10 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 
@@ -35,7 +38,9 @@ public class UpdateCustomerFormController {
     @FXML
     private TextField txtTel;
     private CustomerModel cusModel = new CustomerModel();
-    CustomerDAOImpl customerDAO  = new CustomerDAOImpl();
+    //CustomerDAOImpl customerDAO  = new CustomerDAOImpl();
+    CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
+
 
     public void initialize() {
         populateComboBox();
@@ -65,7 +70,7 @@ public class UpdateCustomerFormController {
     void cmbCusIdOnAction(ActionEvent event) {
         String cusId = cmbCusId.getValue();
         try{
-            CustomerDto cusDto = customerDAO.searchCustomerId(cusId);
+            CustomerDto cusDto = customerBO.searchCustomerId(cusId);
             txtName.setText(cusDto.getName());
             txtAddress.setText(cusDto.getAddress());
             txtTel.setText(cusDto.getTel());
@@ -76,7 +81,7 @@ public class UpdateCustomerFormController {
     }
     public void populateComboBox() {
 
-        List<String> dataFromDB = customerDAO.getCmbCustomerId();
+        List<String> dataFromDB = customerBO.getCmbCustomerId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbCusId.setItems(observableData);
     }
@@ -96,7 +101,7 @@ public class UpdateCustomerFormController {
 
         var dto = new CustomerDto(id, name, address, tel, userId);
         try {
-            boolean flag = customerDAO.updateCustomer(dto);
+            boolean flag = customerBO.updateCustomer(dto);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
                 clearFields();
@@ -116,7 +121,7 @@ public class UpdateCustomerFormController {
     public void populateComboBoxUser() {
 
         try {
-            List<String> dataFromDB = customerDAO.getCmbUserId();
+            List<String> dataFromDB = customerBO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

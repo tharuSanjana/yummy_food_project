@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OrderDetailModel {
-    private boolean saveOrderDetails(String oId, CartTm tm) throws SQLException {
+   /* private boolean saveOrderDetails(String oId, CartTm tm) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO order_food_details VALUES(?, ?)";
@@ -28,5 +28,5 @@ public class OrderDetailModel {
             }
         }
         return true;
-    }
+    }*/
 }

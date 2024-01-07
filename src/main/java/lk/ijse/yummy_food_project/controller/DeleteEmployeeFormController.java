@@ -8,8 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
-import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.EmployeeDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
+import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
@@ -40,8 +43,11 @@ public class DeleteEmployeeFormController {
     private TextField txtTy;
 private EmployeeModel empModel = new EmployeeModel();
 private CustomerModel cusModel = new CustomerModel();
-CustomerDAOImpl customerDAO = new CustomerDAOImpl();
-EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+//CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+    CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
+//EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+EmployeeBO employeeBO = (EmployeeBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.EMPLOYEE);
+
     public void initialize() {
         populateComboBoxEmpId();
         populateComboBoxUser();
@@ -68,7 +74,7 @@ EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
     void cmbEmpIdOnAction(ActionEvent event) {
         String empId =  cmbEmpId.getValue();
         try{
-            EmployeeDto empDto = employeeDAO.searchEmpId(empId);
+            EmployeeDto empDto = employeeBO.searchEmpId(empId);
             txtName.setText(empDto.getName());
             txtAddress.setText(empDto.getAddress());
             txtTel.setText(empDto.getTel());
@@ -96,7 +102,7 @@ EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
     void okButtonOnAction(ActionEvent event) {
         String id = cmbEmpId.getValue();
         try {
-            boolean flag = employeeDAO.deleteEmployee(id);
+            boolean flag = employeeBO.deleteEmployee(id);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted!").show();
             }
@@ -106,14 +112,14 @@ EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
     }
     public void populateComboBoxEmpId() {
 
-        List<String> dataFromDB = employeeDAO.getCmbEmpId();
+        List<String> dataFromDB = employeeBO.getCmbEmpId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbEmpId.setItems(observableData);
     }
     public void populateComboBoxUser() {
 
         try {
-            List<String> dataFromDB = customerDAO.getCmbUserId();
+            List<String> dataFromDB = customerBO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

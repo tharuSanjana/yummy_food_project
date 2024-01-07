@@ -13,8 +13,8 @@ import java.util.List;
 
 public class IngredientsModel {
 
-    private PaymentModel pModel = new PaymentModel();
-    //private IngredientsModel ingModel = new IngredientsModel();
+    /*private PaymentModel pModel = new PaymentModel();
+
     public boolean saveIngredients(IngredientsDto dto, LocalDate date) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -207,7 +207,7 @@ public List<String> getCmbIngredientId(){
         }
 
         return ingIds;
-    }
+    }*/
 
 }
 

@@ -18,6 +18,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.PaymentDAOImpl;
+import lk.ijse.yummy_food_project.DAO.QueryDAO;
+import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.CostPaymentDto;
 import lk.ijse.yummy_food_project.dto.incomePaymentDto;
 //import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
@@ -79,7 +84,9 @@ public class PaymentFormController {
 
     private ObservableList<incomePaymentDto> obList = FXCollections.observableArrayList();
     private PaymentModel pModel = new PaymentModel();
-
+    //PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
+    PaymentBO paymentBO = (PaymentBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.PAYMENT);
+    QueryDAO queryDAO = new QueryDAO();
 
     private void setDate() {
         lblDate.setText(String.valueOf(LocalDate.now()));
@@ -95,7 +102,7 @@ public class PaymentFormController {
     private String generatePaymentId(){
         String paymentId = null;
         try {
-            paymentId = pModel.getGeneratePaymentId();
+            paymentId = paymentBO.getGeneratePaymentId();
             lblPaymentId.setText(paymentId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -138,12 +145,12 @@ public class PaymentFormController {
     }
 
     private void loadAllIncomePayment(){
-        var model = new PaymentModel();
+
 
         ObservableList<incomePaymentDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<incomePaymentDto> dtoList = model.getAllIncomePayment();
+            List<incomePaymentDto> dtoList = queryDAO.getAllIncomePayment();
 
             for (incomePaymentDto dto : dtoList){
                 obList.add(
@@ -162,12 +169,11 @@ public class PaymentFormController {
         }
     }
     private void loadAllCostPayment(){
-        var model = new PaymentModel();
 
         ObservableList<CostPaymentDto> obList = FXCollections.observableArrayList();
 
         try{
-            ArrayList<CostPaymentDto> dtoList = model.getAllCostPayment();
+            ArrayList<CostPaymentDto> dtoList = queryDAO.getAllCostPayment();
 
             for (CostPaymentDto dto : dtoList){
                 obList.add(

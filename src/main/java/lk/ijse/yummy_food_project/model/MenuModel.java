@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuModel {
-    public ArrayList<FoodDto> getAllFood() throws SQLException {
+    /*public ArrayList<FoodDto> getAllFood() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM food";

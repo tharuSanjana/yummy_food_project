@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.concurrent.Callable;
 
 public class AddMenuModel {
-    public boolean saveMenu(FoodDto dto) throws SQLException {
+    /*public boolean saveMenu(FoodDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "INSERT INTO food VALUES(?,?,?,?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -41,5 +41,5 @@ public class AddMenuModel {
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1,id);
         return pstm.executeUpdate()>0;
-    }
+    }*/
 }

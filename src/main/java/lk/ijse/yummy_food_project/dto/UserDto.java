@@ -37,7 +37,7 @@ public class UserDto {
     public UserDto(String user_id,String username) {
         this.user_id = user_id;
         this.username = username;
-        this.password = password;
+        //this.password = password;
     }
 
 

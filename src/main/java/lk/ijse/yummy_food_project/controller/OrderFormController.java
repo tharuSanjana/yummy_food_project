@@ -6,16 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,13 +22,14 @@ import java.util.List;
 import java.util.Optional;
 
 
-import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
-import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.*;
+import lk.ijse.yummy_food_project.bo.Custom.*;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
-import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.dto.FoodDto;
 import lk.ijse.yummy_food_project.dto.PlaceOrderDto;
 import lk.ijse.yummy_food_project.dto.tm.CartTm;
+import lk.ijse.yummy_food_project.entity.Food;
 import lk.ijse.yummy_food_project.model.*;
 
 public class OrderFormController {
@@ -126,8 +124,14 @@ public class OrderFormController {
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
     private PlaceOrderModel placeOrderModel = new PlaceOrderModel();
     private PaymentModel pModel = new PaymentModel();
-    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
-    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+
+    CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
+    EmployeeBO employeeBO = (EmployeeBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.EMPLOYEE);
+    FoodBO foodBO = (FoodBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.FOOD);
+    OrderBO orderBO = (OrderBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.ORDER);
+    PaymentBO paymentBO = (PaymentBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.PAYMENT);
+    OrderDetailBO orderDetailBO = (OrderDetailBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.ORDER_DETAIL);
+
 
     public void initialize(){
 
@@ -145,7 +149,7 @@ public class OrderFormController {
     private String generatePaymentId(){
         String paymentId = null;
         try {
-            paymentId = pModel.getGeneratePaymentId();
+            paymentId = paymentBO.getGeneratePaymentId();
             lblPaymentId.setText(paymentId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -191,11 +195,11 @@ public class OrderFormController {
 
 
 
-private void setDate(){
+    private void setDate(){
         lblDate.setText(String.valueOf(LocalDate.now()));
     }
 
-    public void setTime(){
+      public void setTime(){
    // lblTime.setText(String.valueOf(LocalTime.now()));
     LocalTime currentTime = LocalTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -208,7 +212,7 @@ public void populateComboBox() {
 
     try {
 
-        List<String> customerIdsFromDB = orderModel.getCmbCusId();
+        List<String> customerIdsFromDB = orderBO.getCmbCusId();
         ObservableList<String> observableCustomerIds = FXCollections.observableArrayList(customerIdsFromDB);
         cmbCustomerId.setItems(observableCustomerIds);
     } catch (SQLException e) {
@@ -217,7 +221,7 @@ public void populateComboBox() {
 
     try {
 
-        List<String> foodIdsFromDB = orderModel.getCmbFoodId();
+        List<String> foodIdsFromDB = orderBO.getCmbFoodId();
         ObservableList<String> observableFoodIds = FXCollections.observableArrayList(foodIdsFromDB);
         cmbFoodId.setItems(observableFoodIds);
     } catch (SQLException e) {
@@ -226,7 +230,7 @@ public void populateComboBox() {
 
     try {
 
-        List<String> foodIdsFromDB = orderModel.getCmbEmployeeId();
+        List<String> foodIdsFromDB = orderBO.getCmbEmployeeId();
         ObservableList<String> observableFoodIds = FXCollections.observableArrayList(foodIdsFromDB);
         cmbDriverId.setItems(observableFoodIds);
     } catch (SQLException e) {
@@ -249,7 +253,7 @@ public void populateComboBox() {
     void cmbCustomerOnAction(ActionEvent event) {
         String cusId = cmbCustomerId.getValue();
         try{
-            CustomerDto cusDto = customerDAO.searchCustomerId(cusId);
+            CustomerDto cusDto = customerBO.searchCustomerId(cusId);
             lblCusName.setText(cusDto.getName());
 
         } catch (SQLException e) {
@@ -268,7 +272,7 @@ public void populateComboBox() {
 
         }else {
             try {
-                String driverName = employeeDAO.searchEmployeeId(empId);
+                String driverName = employeeBO.searchEmployeeId(empId);
                 if (driverName != null) {
                     lblDriverName.setText(driverName);
 
@@ -285,7 +289,7 @@ public void populateComboBox() {
     void cmbFoodOnAction(ActionEvent event) {
         String foodId = cmbFoodId.getValue();
         try{
-            FoodDto dto = menuModel.searchFood(foodId);
+            Food dto = foodBO.searchFood(foodId);
             lblFoodName.setText(dto.getName());
             lblPrice.setText(String.valueOf(dto.getPrice()));
             lblDes.setText(dto.getDesc());
@@ -388,7 +392,7 @@ public void populateComboBox() {
             var placeOrderDto = new PlaceOrderDto(oId, date, orderType, time,pId, empId, cusId, cartTmList,total);
 
             try {
-                boolean isSuccess = placeOrderModel.placeOrder(placeOrderDto);
+                boolean isSuccess = orderDetailBO.placeOrder(placeOrderDto);
                 //System.out.println("Sanjana");
                 if (isSuccess) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
@@ -398,34 +402,13 @@ public void populateComboBox() {
             }
         }
         }
-        /*String orderType = (String) cmbOrderType.getValue();
-        String cusId = cmbCustomerId.getValue();
-        String empId = cmbDriverId.getValue();
 
-        List<CartTm> cartTmList = new ArrayList<>();
-
-        for (int i = 0; i < tblOrder.getItems().size(); i++) {
-            CartTm cartTm = obList.get(i);
-
-            cartTmList.add(cartTm);
-        }
-        System.out.println("Place order form controller: " + cartTmList);
-       var placeOrderDto = new PlaceOrderDto(orderType, cusId, empId, cartTmList);
-
-        try {
-            boolean isSuccess = OrderModel.placeOrder(placeOrderDto);
-            if (isSuccess) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
     }
 
     private String generateOrderId(){
         String orderId = null;
         try {
-             orderId = orderModel.getGenerateOrderId();
+             orderId = orderBO.getGenerateOrderId();
             lblOrderId.setText(orderId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -434,29 +417,7 @@ public void populateComboBox() {
         return orderId;
     }
 
-   /* private void loadAllOrder(){
-       var model = new OrderModel();
-       ObservableList<OrderTm> obList = FXCollections.observableArrayList();
-       try{
-           List<OrderDto> dtoList = model.getAllOrders();
-           for(OrderDto dto:dtoList){
-               obList.add(
-                       new OrderTm(
-                               dto.getId(),
-                               dto.getDate(),
-                               dto.getOrderType(),
-                               dto.getTime(),
-                               dto.getCusId(),
-                               dto.getEmpId()
 
-                       )
-               );
-
-           }
-       } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
-    }*/
 
     public  void setDataComboBox(){
 

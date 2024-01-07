@@ -11,7 +11,7 @@ public class SupplierDto {
     private String name;
 
     private String tel;
-private String email;
+    private String email;
 
     public String getEmail() {
         return email;

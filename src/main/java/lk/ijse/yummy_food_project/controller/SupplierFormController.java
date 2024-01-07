@@ -12,6 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupplierDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
 import lk.ijse.yummy_food_project.dto.tm.SupplierTm;
 import lk.ijse.yummy_food_project.email.SendEmail;
@@ -61,6 +65,9 @@ public class SupplierFormController{
     @FXML
     private TextField txtEmail;
     private SupplierModel supModel = new SupplierModel();
+   // SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
+    SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
+
     @FXML
     void backButtonOnAction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml"));
@@ -115,13 +122,13 @@ public class SupplierFormController{
             var dto = new SupplierDto(id, name, tel,email);
 
             try {
-                boolean flag = supModel.saveSupplier(dto);
+                boolean flag = supplierBO.saveSupplier(dto);
 
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
-                    SendEmail mail = new SendEmail();
+                    /*SendEmail mail = new SendEmail();
                     String[] list =new String[]{dto.getEmail()};
-                    mail.sendFromGMail(list,"Saved","You are saved !!");
+                    mail.sendFromGMail(list,"Saved","You are saved !!");*/
                     clearFields();
                 }
             } catch (SQLException e) {
@@ -165,12 +172,12 @@ public class SupplierFormController{
 
     }
     private void loadAllSupplier(){
-        var model = new SupplierModel();
+        //ar model = new SupplierModel();
 
         ObservableList<SupplierDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<SupplierDto> dtoList = model.getAllSupplier();
+            List<SupplierDto> dtoList = supplierBO.getAllSupplier();
 
             for (SupplierDto dto : dtoList){
                 obList.add(
@@ -216,7 +223,7 @@ public class SupplierFormController{
     private String generateSupplierId(){
         String supId = null;
         try {
-            supId = supModel.getGenerateSupplierId();
+            supId = supplierBO.getGenerateSupplierId();
             lblId.setText(supId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

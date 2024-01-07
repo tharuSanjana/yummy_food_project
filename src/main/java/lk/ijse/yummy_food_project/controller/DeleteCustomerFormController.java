@@ -8,7 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.DAO.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.CustomerDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.model.CustomerModel;
 
@@ -34,7 +36,8 @@ public class DeleteCustomerFormController {
     @FXML
     private TextField txtTel;
 private CustomerModel cusModel = new CustomerModel();
-CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+//CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+    CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
 
     public void initialize() {
         populateComboBox();
@@ -64,7 +67,7 @@ CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     void cmbCusIdOnAction(ActionEvent event) {
         String cusId =  cmbCusId.getValue();
         try{
-            CustomerDto cusDto = customerDAO.searchCustomerId(cusId);
+            CustomerDto cusDto = customerBO.searchCustomerId(cusId);
             txtName.setText(cusDto.getName());
             txtAddress.setText(cusDto.getAddress());
             txtTel.setText(cusDto.getTel());
@@ -75,7 +78,7 @@ CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     }
     public void populateComboBox() {
 
-        List<String> dataFromDB = customerDAO.getCmbCustomerId();
+        List<String> dataFromDB = customerBO.getCmbCustomerId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbCusId.setItems(observableData);
 
@@ -91,7 +94,7 @@ CustomerDAOImpl customerDAO = new CustomerDAOImpl();
         String id = cmbCusId.getValue();
 
         try {
-            boolean flag = customerDAO.deleteCustomer(id);
+            boolean flag = customerBO.deleteCustomer(id);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
             } else {
@@ -105,7 +108,7 @@ CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     public void populateComboBoxUser() {
 
         try {
-            List<String> dataFromDB = customerDAO.getCmbUserId();
+            List<String> dataFromDB = customerBO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {

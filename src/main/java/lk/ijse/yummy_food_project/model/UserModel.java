@@ -18,10 +18,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserModel {
-    @FXML
-    private AnchorPane root;
 
-    public static boolean checkUsernamePw(UserDto dto) throws SQLException {
+
+    /*public static boolean checkUsernamePw(UserDto dto) throws SQLException {
         boolean flag = false;
         Connection connection = DbConnection.getInstance().getConnection();
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierModel {
-    public boolean saveSupplier(SupplierDto dto) throws SQLException {
+    /*public boolean saveSupplier(SupplierDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO supplier VALUES(?,?,?,?)";
@@ -132,6 +132,6 @@ public class SupplierModel {
             );
         }
         return  supDto;
-}
+}*/
 }
 

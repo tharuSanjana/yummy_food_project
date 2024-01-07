@@ -20,6 +20,13 @@ import java.util.ArrayList;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.IngredientsDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.PaymentDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.IngredientsDAO;
+import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
+import lk.ijse.yummy_food_project.bo.Custom.IngredientsBO;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
 import lk.ijse.yummy_food_project.dto.tm.IngredientsTm;
 import lk.ijse.yummy_food_project.model.IngredientsModel;
@@ -66,7 +73,11 @@ public class IngredientsFormController {
 
     private IngredientsModel ingModel = new IngredientsModel();
     private ObservableList<IngredientsTm> obList = FXCollections.observableArrayList();
+    //IngredientsDAO ingredientsDAO = new IngredientsDAOImpl();
+   IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
 
+    //PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
+    PaymentBO paymentBO = (PaymentBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.PAYMENT);
 
     @FXML
     void saveButtonOnAction(ActionEvent event) {
@@ -81,7 +92,7 @@ public class IngredientsFormController {
 
         try {
 
-            boolean flag = ingModel.saveIngredients(dto,date);
+            boolean flag = ingredientsBO.saveIngredients(dto,date);
 
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Ingredients saved!").show();
@@ -159,7 +170,7 @@ public class IngredientsFormController {
     private String generatePaymentId () {
         String paymentId = null;
         try {
-            paymentId = pModel.getGeneratePaymentId();
+            paymentId = paymentBO.getGeneratePaymentId();
             lblPaymentId.setText(paymentId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -173,7 +184,7 @@ public class IngredientsFormController {
         ObservableList<IngredientsDto> obList = FXCollections.observableArrayList();
 
         try{
-            ArrayList<IngredientsDto> dtoList = model.getAllIngredients();
+            ArrayList<IngredientsDto> dtoList = ingredientsBO.getAllIngredients();
 
             for (IngredientsDto dto : dtoList){
                 obList.add(
@@ -195,7 +206,7 @@ public class IngredientsFormController {
     private String generateIngredientId () {
         String ingId = null;
         try {
-            ingId = ingModel.getGenerateIngredientId();
+            ingId  =ingredientsBO.getGenerateIngredientId();
             lblIngId.setText(ingId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

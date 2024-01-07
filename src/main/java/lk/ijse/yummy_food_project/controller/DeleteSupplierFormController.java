@@ -9,7 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupplierDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
+import lk.ijse.yummy_food_project.entity.Supplier;
 import lk.ijse.yummy_food_project.model.SupplierModel;
 
 import java.sql.SQLException;
@@ -32,6 +37,11 @@ public class DeleteSupplierFormController {
     private TextField txtTel;
 
     private SupplierModel supModel= new SupplierModel();
+   // SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
+   SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
+
+
+
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -56,10 +66,10 @@ public class DeleteSupplierFormController {
     void cmbEmpIdOnAction(ActionEvent event) {
         String supId = cmbSupId.getValue();
         try{
-            SupplierDto supDto = supModel.searchSupplierId(supId);
-            txtName.setText(supDto.getName());
-            txtTel.setText(supDto.getTel());
-            txtEmail.setText(supDto.getEmail());
+            Supplier sup = supplierBO.searchSupplierId(supId);
+            txtName.setText(sup.getName());
+            txtTel.setText(sup.getTel());
+            txtEmail.setText(sup.getEmail());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -70,7 +80,7 @@ public class DeleteSupplierFormController {
     void okButtonOnAction(ActionEvent event) {
         String id = cmbSupId.getValue();
         try {
-            boolean flag = supModel.deleteSupplier(id);
+            boolean flag = supplierBO.deleteSupplier(id);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier deleted!").show();
             }
@@ -80,7 +90,7 @@ public class DeleteSupplierFormController {
     }
     public void populateComboBoxEmpId() throws SQLException {
 
-        List<String> dataFromDB = supModel.getCmbSupId();
+        List<String> dataFromDB = supplierBO.getCmbSupId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbSupId.setItems(observableData);
     }

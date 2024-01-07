@@ -9,9 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import lk.ijse.yummy_food_project.dto.CustomerDto;
-import lk.ijse.yummy_food_project.dto.EmployeeDto;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupplierDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
+import lk.ijse.yummy_food_project.entity.Supplier;
 import lk.ijse.yummy_food_project.model.SupplierModel;
 
 import java.sql.SQLException;
@@ -34,6 +37,9 @@ public class UpdateSupplierFormController {
     private TextField txtTel;
 
     private SupplierModel supModel = new SupplierModel();
+   // SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
+    SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
+
     @FXML
     void cancelButtonOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -59,10 +65,10 @@ public class UpdateSupplierFormController {
     void cmbEmpIdOnAction(ActionEvent event) {
         String supId = cmbSupId.getValue();
         try{
-          SupplierDto supDto = supModel.searchSupplierId(supId);
-            txtName.setText(supDto.getName());
-            txtTel.setText(supDto.getTel());
-            txtEmail.setText(supDto.getEmail());
+          Supplier sup = supplierBO.searchSupplierId(supId);
+            txtName.setText(sup.getName());
+            txtTel.setText(sup.getTel());
+            txtEmail.setText(sup.getEmail());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -78,7 +84,7 @@ public class UpdateSupplierFormController {
 
         var dto = new SupplierDto(id, name, tel,email);
         try {
-            boolean flag = supModel.updateSupplier(dto);
+            boolean flag = supplierBO.updateSupplier(dto);
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
                 clearFields();
@@ -89,7 +95,7 @@ public class UpdateSupplierFormController {
     }
     public void populateComboBoxEmpId() throws SQLException {
 
-        List<String> dataFromDB = supModel.getCmbSupId();
+        List<String> dataFromDB = supplierBO.getCmbSupId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbSupId.setItems(observableData);
     }

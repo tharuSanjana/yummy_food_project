@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlaceModel {
-    public ArrayList<PlaceDto> getAllPlaceOrder() throws SQLException {
+    /*public ArrayList<PlaceDto> getAllPlaceOrder() throws SQLException {
         Connection connection= DbConnection.getInstance().getConnection();
         String sql = "SELECT \n" +
                 "orders.or_id,\n" +
@@ -49,5 +49,5 @@ public class PlaceModel {
         }
         return dtoList;
 
-    }
+    }*/
 }

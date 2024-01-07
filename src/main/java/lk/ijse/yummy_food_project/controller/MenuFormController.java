@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -22,6 +21,10 @@ import javafx.stage.Modality;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.FoodDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.FoodBO;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.FoodDto;
 import lk.ijse.yummy_food_project.dto.tm.FoodTm;
@@ -51,6 +54,8 @@ public class MenuFormController {
     @FXML
     private TableView<FoodDto> tblMenu;
 
+   // FoodDAOImpl foodDAO = new FoodDAOImpl();
+    FoodBO foodBO = (FoodBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.FOOD);
 
 
     public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
@@ -96,7 +101,7 @@ public class MenuFormController {
 
 
             try {
-                List<FoodDto> dtoList = model.getAllFood();
+                List<FoodDto> dtoList = foodBO.getAllFood();
                 for (FoodDto dto : dtoList) {
                     obList.add(
                             new FoodTm(

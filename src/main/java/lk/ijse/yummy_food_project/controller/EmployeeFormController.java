@@ -24,7 +24,9 @@ import java.util.regex.Pattern;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-import lk.ijse.yummy_food_project.DAO.EmployeeDAOImpl;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.EmployeeDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.dto.tm.EmployeeTm;
 import lk.ijse.yummy_food_project.model.EmployeeModel;
@@ -80,8 +82,10 @@ public class EmployeeFormController {
     @FXML
     private ComboBox<String> cmbUserId = new ComboBox<>();
     private EmployeeModel empModel = new EmployeeModel();
-    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
-      // cmbUserId = new ComboBox<>();
+   // EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    EmployeeBO employeeBO = (EmployeeBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.EMPLOYEE);
+
+    // cmbUserId = new ComboBox<>();
    // private UserModel userModel = new UserModel();
 
     public void initialize() {
@@ -116,7 +120,7 @@ public class EmployeeFormController {
             var dto = new EmployeeDto(id, name, address, tel, type, userId);
 
             try {
-                boolean flag = employeeDAO.saveEmp(dto);
+                boolean flag = employeeBO.saveEmp(dto);
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!").show();
                     clearFields();
@@ -150,7 +154,7 @@ public class EmployeeFormController {
 
         ObservableList<EmployeeDto>obList = FXCollections.observableArrayList();
         try{
-            List<EmployeeDto>dtoList = employeeDAO.getAllEmployee();
+            List<EmployeeDto>dtoList = employeeBO.getAllEmployee();
             for(EmployeeDto dto:dtoList){
                 obList.add(
                         new EmployeeTm(
@@ -172,7 +176,7 @@ public class EmployeeFormController {
     public void populateComboBox() {
 
         try {
-            List<String> dataFromDB = employeeDAO.getCmbUserId();
+            List<String> dataFromDB = employeeBO.getCmbUserId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbUserId.setItems(observableData);
         } catch (SQLException e) {
@@ -261,7 +265,7 @@ public class EmployeeFormController {
     private String generateEmployeeId(){
         String empId = null;
         try {
-            empId= employeeDAO.getGenerateEmployeeId();
+            empId= employeeBO.getGenerateEmployeeId();
             lblEmpId.setText(empId);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

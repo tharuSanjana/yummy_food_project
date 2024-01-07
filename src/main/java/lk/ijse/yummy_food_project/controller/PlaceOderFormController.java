@@ -21,9 +21,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.OrderDetailDAOImpl;
+import lk.ijse.yummy_food_project.DAO.QueryDAO;
 import lk.ijse.yummy_food_project.dto.PlaceDto;
 import lk.ijse.yummy_food_project.dto.tm.PlaceTm;
-import lk.ijse.yummy_food_project.model.CustomerModel;
 import lk.ijse.yummy_food_project.model.PlaceModel;
 import lk.ijse.yummy_food_project.model.PlaceOrderModel;
 
@@ -63,7 +64,8 @@ public class PlaceOderFormController {
     private Button addBtn;
     private PlaceOrderModel plModel = new PlaceOrderModel();
     private PlaceModel placeModel = new PlaceModel();
-
+    OrderDetailDAOImpl orderDetailDAO = new OrderDetailDAOImpl();
+    QueryDAO queryDAO = new QueryDAO();
 
     @FXML
     void backOnButtonAction(ActionEvent event) throws IOException {
@@ -109,12 +111,11 @@ public class PlaceOderFormController {
     }
 
     private void loadAllPlaceOrder(){
-        var model = new PlaceModel();
 
         ObservableList<PlaceDto> obList = FXCollections.observableArrayList();
 
         try{
-            List<PlaceDto> dtoList = model.getAllPlaceOrder();
+            List<PlaceDto> dtoList = queryDAO.getAllPlaceOrder();
 
             for (PlaceDto dto : dtoList){
                 obList.add(

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderModel {
-    public List<String> getCmbCusId() throws SQLException {
+   /* public List<String> getCmbCusId() throws SQLException {
         Connection connection = null;
         List<String> customerId = new ArrayList<>();
         String query = "SELECT cus_id FROM customer";
@@ -105,7 +105,7 @@ public class OrderModel {
         String empId = oDto.getEmpId();
     }*/
 
-    public String getGenerateOrderId() throws SQLException {
+  /*  public String getGenerateOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT or_id FROM orders ORDER BY or_id DESC LIMIT 1";
@@ -154,7 +154,7 @@ public class OrderModel {
         return dtoList;
 
     }*/
-    public boolean SaveOrder(String orId,LocalDate date,String orderType,LocalTime time,String pId,String empId,String cusId) throws SQLException {
+  /*  public boolean SaveOrder(String orId,LocalDate date,String orderType,LocalTime time,String pId,String empId,String cusId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO orders VALUES(?, ?, ?,?,?,?,?)";
@@ -169,6 +169,6 @@ public class OrderModel {
 
 
         return pstm.executeUpdate() > 0;
-    }
+    }*/
 
 }

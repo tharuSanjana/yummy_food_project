@@ -3,16 +3,10 @@ package lk.ijse.yummy_food_project.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +16,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 //import lk.ijse.yummy_food_project.dto.tm.PlaceIngredientsTm;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.IngredientsDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupIngDAOImpl;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupplierDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.FoodBO;
+import lk.ijse.yummy_food_project.bo.Custom.IngredientsBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupIngBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.*;
-import lk.ijse.yummy_food_project.dto.tm.CartTm;
 import lk.ijse.yummy_food_project.dto.tm.SupIngTm;
 import lk.ijse.yummy_food_project.dto.tm.ViewSupIngTm;
-import lk.ijse.yummy_food_project.email.SendEmail;
+import lk.ijse.yummy_food_project.entity.Supplier;
 import lk.ijse.yummy_food_project.model.IngredientsModel;
-import lk.ijse.yummy_food_project.model.PaymentModel;
 import lk.ijse.yummy_food_project.model.SupModel;
 import lk.ijse.yummy_food_project.model.SupplierModel;
 
@@ -99,6 +99,10 @@ public class SupIngFormController {
     private ObservableList<SupIngTm> obList = FXCollections.observableArrayList();
     private ObservableList<ViewSupIngTm> viList = FXCollections.observableArrayList();
     private SupModel sModel = new SupModel();
+    IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
+   SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
+    SupIngBO supIngBO = (SupIngBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUP_ING);
+
 
     @FXML
     void addButtonOnAction(ActionEvent event) {
@@ -183,8 +187,8 @@ public class SupIngFormController {
     void cmbSupplierOnAction(ActionEvent event) {
         String supId = cmbSupId.getValue();
         try {
-            SupplierDto supDto = supModel.searchSupplierId(supId);
-            lblSupName.setText(supDto.getName());
+            Supplier sup = supplierBO.searchSupplierId(supId);
+            lblSupName.setText(sup.getName());
 
 
         } catch (SQLException e) {
@@ -209,7 +213,7 @@ public class SupIngFormController {
             var viewDto = new ViewSupIngDto(supId, ingId, supName, ingName, total, pId);
 
             try {
-                boolean flag = sModel.saveSupIng(viewDto);
+                boolean flag = supIngBO.saveSupIng(viewDto);
 
                 if (flag) {
                     new Alert(Alert.AlertType.CONFIRMATION, "supIng saved!").show();
@@ -228,7 +232,7 @@ public class SupIngFormController {
     public void populateComboBoxSupplier() {
 
         try {
-            List<String> dataFromDB = supModel.getCmbSupId();
+            List<String> dataFromDB = supplierBO.getCmbSupId();
             ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
             cmbSupId.setItems(observableData);
         } catch (SQLException e) {
@@ -240,7 +244,7 @@ public class SupIngFormController {
     void cmbIngOnAction(ActionEvent event) {
         String ingId =  cmbIng.getValue();
         try {
-            IngredientsDto ingDto = ingModel.searchIngredientId(ingId);
+            IngredientsDto ingDto = ingredientsBO.searchIngredientId(ingId);
             lblIngName.setText(ingDto.getName());
             lblIngPrice.setText(String.valueOf(ingDto.getPrice()));
             lblQty.setText(String.valueOf(ingDto.getPrice()));
@@ -252,7 +256,7 @@ public class SupIngFormController {
     }
 
     public void populateComboBoxIng() {
-        List<String> dataFromDB = ingModel.getCmbIngId();
+        List<String> dataFromDB = ingredientsBO.getCmbIngId();
         ObservableList<String> observableData = FXCollections.observableArrayList(dataFromDB);
         cmbIng.setItems(observableData);
 

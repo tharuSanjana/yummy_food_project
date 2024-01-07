@@ -9,13 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.yummy_food_project.DAO.BoFactory;
+import lk.ijse.yummy_food_project.DAO.Custom.Impl.SupIngDAOImpl;
+import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
+import lk.ijse.yummy_food_project.bo.Custom.SupIngBO;
 import lk.ijse.yummy_food_project.dto.ViewSupIngDto;
 import lk.ijse.yummy_food_project.dto.tm.ViewSupIngTm;
-import lk.ijse.yummy_food_project.model.SupModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +52,8 @@ public class ViewSupIngController {
     private TableView<ViewSupIngDto> tblSupIng;
 
 //private SupModel model = new SupModel();
+   // SupIngDAOImpl supIngDAO = new SupIngDAOImpl();
+    SupIngBO supIngBO = (SupIngBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUP_ING);
 
     public void initialize(){
         setCellValueFactory();
@@ -81,13 +85,13 @@ public class ViewSupIngController {
         stage.centerOnScreen();
     }
     public void loadAllSupIng() {
-        var model = new SupModel();
+
 
         ObservableList<ViewSupIngDto> obList = FXCollections.observableArrayList();
 
 
         try {
-            List<ViewSupIngDto> dtoList = model.getAllSupIng();
+            List<ViewSupIngDto> dtoList = supIngBO.getAllSupIng();
             for (ViewSupIngDto dto : dtoList) {
                 obList.add(
                         new ViewSupIngTm(

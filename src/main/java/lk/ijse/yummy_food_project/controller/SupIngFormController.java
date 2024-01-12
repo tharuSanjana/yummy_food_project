@@ -28,9 +28,6 @@ import lk.ijse.yummy_food_project.dto.*;
 import lk.ijse.yummy_food_project.dto.tm.SupIngTm;
 import lk.ijse.yummy_food_project.dto.tm.ViewSupIngTm;
 import lk.ijse.yummy_food_project.entity.Supplier;
-import lk.ijse.yummy_food_project.model.IngredientsModel;
-import lk.ijse.yummy_food_project.model.SupModel;
-import lk.ijse.yummy_food_project.model.SupplierModel;
 
 public class SupIngFormController {
 
@@ -93,12 +90,9 @@ public class SupIngFormController {
     @FXML
     private Button btnCancel;
 
-    private IngredientsModel ingModel = new IngredientsModel();
 
-    private SupplierModel supModel = new SupplierModel();
     private ObservableList<SupIngTm> obList = FXCollections.observableArrayList();
     private ObservableList<ViewSupIngTm> viList = FXCollections.observableArrayList();
-    private SupModel sModel = new SupModel();
     IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
    SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
     SupIngBO supIngBO = (SupIngBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUP_ING);

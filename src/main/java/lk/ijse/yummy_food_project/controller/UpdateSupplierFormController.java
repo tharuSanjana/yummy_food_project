@@ -15,7 +15,6 @@ import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
 import lk.ijse.yummy_food_project.entity.Supplier;
-import lk.ijse.yummy_food_project.model.SupplierModel;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -36,7 +35,6 @@ public class UpdateSupplierFormController {
     @FXML
     private TextField txtTel;
 
-    private SupplierModel supModel = new SupplierModel();
    // SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
     SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
 

@@ -19,7 +19,6 @@ import lk.ijse.yummy_food_project.bo.Custom.SupplierBO;
 import lk.ijse.yummy_food_project.dto.SupplierDto;
 import lk.ijse.yummy_food_project.dto.tm.SupplierTm;
 import lk.ijse.yummy_food_project.email.SendEmail;
-import lk.ijse.yummy_food_project.model.SupplierModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,7 +63,6 @@ public class SupplierFormController{
     private TextField txtTel;
     @FXML
     private TextField txtEmail;
-    private SupplierModel supModel = new SupplierModel();
    // SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
     SupplierBO supplierBO = (SupplierBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.SUPPLIER);
 

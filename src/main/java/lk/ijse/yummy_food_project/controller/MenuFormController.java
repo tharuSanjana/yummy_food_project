@@ -28,7 +28,6 @@ import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.db.DbConnection;
 import lk.ijse.yummy_food_project.dto.FoodDto;
 import lk.ijse.yummy_food_project.dto.tm.FoodTm;
-import lk.ijse.yummy_food_project.model.MenuModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -95,7 +94,7 @@ public class MenuFormController {
     }
 
     public void loadAllFood() {
-        var model = new MenuModel();
+        //var model = new MenuModel();
 
         ObservableList<FoodDto> obList = FXCollections.observableArrayList();
 

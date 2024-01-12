@@ -30,7 +30,6 @@ import lk.ijse.yummy_food_project.dto.FoodDto;
 import lk.ijse.yummy_food_project.dto.PlaceOrderDto;
 import lk.ijse.yummy_food_project.dto.tm.CartTm;
 import lk.ijse.yummy_food_project.entity.Food;
-import lk.ijse.yummy_food_project.model.*;
 
 public class OrderFormController {
     @FXML
@@ -117,13 +116,9 @@ public class OrderFormController {
     @FXML
     private Button btnCancel;
 
-    private CustomerModel cusModel = new CustomerModel();
-    private  OrderModel orderModel = new OrderModel();
-    private EmployeeModel empModel = new EmployeeModel();
-    private MenuModel menuModel = new MenuModel();
+
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
-    private PlaceOrderModel placeOrderModel = new PlaceOrderModel();
-    private PaymentModel pModel = new PaymentModel();
+
 
     CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
     EmployeeBO employeeBO = (EmployeeBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.EMPLOYEE);

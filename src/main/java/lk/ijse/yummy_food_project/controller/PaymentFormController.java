@@ -28,7 +28,6 @@ import lk.ijse.yummy_food_project.dto.incomePaymentDto;
 //import lk.ijse.yummy_food_project.dto.tm.PaymentTm;
 import lk.ijse.yummy_food_project.dto.tm.CostPaymentTm;
 import lk.ijse.yummy_food_project.dto.tm.IncomePaymentTm;
-import lk.ijse.yummy_food_project.model.PaymentModel;
 
 
 import javafx.event.ActionEvent;
@@ -83,7 +82,6 @@ public class PaymentFormController {
     private AnchorPane root;
 
     private ObservableList<incomePaymentDto> obList = FXCollections.observableArrayList();
-    private PaymentModel pModel = new PaymentModel();
     //PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
     PaymentBO paymentBO = (PaymentBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.PAYMENT);
     QueryDAO queryDAO = new QueryDAO();

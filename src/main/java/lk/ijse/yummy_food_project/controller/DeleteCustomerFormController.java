@@ -12,7 +12,7 @@ import lk.ijse.yummy_food_project.DAO.BoFactory;
 import lk.ijse.yummy_food_project.DAO.Custom.Impl.CustomerDAOImpl;
 import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
 import lk.ijse.yummy_food_project.dto.CustomerDto;
-import lk.ijse.yummy_food_project.model.CustomerModel;
+
 
 import java.sql.SQLException;
 import java.util.List;
@@ -35,7 +35,7 @@ public class DeleteCustomerFormController {
 
     @FXML
     private TextField txtTel;
-private CustomerModel cusModel = new CustomerModel();
+
 //CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
 

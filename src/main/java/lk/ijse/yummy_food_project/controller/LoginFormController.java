@@ -17,7 +17,6 @@ import lk.ijse.yummy_food_project.DAO.Custom.Impl.UserDAOImpl;
 import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.bo.Custom.UserBO;
 import lk.ijse.yummy_food_project.dto.UserDto;
-import lk.ijse.yummy_food_project.model.CustomerModel;
 
 import javafx.scene.control.TextField;
 
@@ -33,7 +32,6 @@ public class LoginFormController {
 
     @FXML
     private TextField txtUserName;
-    private CustomerModel cusModel = new CustomerModel();
    // UserDAOImpl userDAO = new UserDAOImpl();
     UserBO userBO = (UserBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.USER);
 

@@ -13,8 +13,6 @@ import lk.ijse.yummy_food_project.DAO.Custom.Impl.PaymentDAOImpl;
 import lk.ijse.yummy_food_project.bo.Custom.IngredientsBO;
 import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
-import lk.ijse.yummy_food_project.model.IngredientsModel;
-import lk.ijse.yummy_food_project.model.PaymentModel;
 
 
 import java.sql.SQLException;
@@ -45,8 +43,7 @@ public class UpdateIngredientFormController {
     @FXML
     private TextField txtQty;
 
-    private IngredientsModel ingModel = new IngredientsModel();
-    private PaymentModel pModel = new PaymentModel();
+
     //IngredientsDAOImpl ingredientsDAO = new IngredientsDAOImpl();
     IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
     //PaymentDAOImpl paymentDAO = new PaymentDAOImpl();

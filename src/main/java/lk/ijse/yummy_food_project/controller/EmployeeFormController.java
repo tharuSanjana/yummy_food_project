@@ -29,7 +29,6 @@ import lk.ijse.yummy_food_project.DAO.Custom.Impl.EmployeeDAOImpl;
 import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
 import lk.ijse.yummy_food_project.dto.tm.EmployeeTm;
-import lk.ijse.yummy_food_project.model.EmployeeModel;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,7 +80,6 @@ public class EmployeeFormController {
 
     @FXML
     private ComboBox<String> cmbUserId = new ComboBox<>();
-    private EmployeeModel empModel = new EmployeeModel();
    // EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
     EmployeeBO employeeBO = (EmployeeBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.EMPLOYEE);
 

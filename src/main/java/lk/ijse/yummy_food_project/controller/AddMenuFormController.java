@@ -9,7 +9,7 @@ import lk.ijse.yummy_food_project.DAO.Custom.Impl.FoodDAOImpl;
 import lk.ijse.yummy_food_project.bo.Custom.FoodBO;
 import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.FoodDto;
-import lk.ijse.yummy_food_project.model.AddMenuModel;
+
 
 import java.sql.SQLException;
 import java.util.regex.Pattern;
@@ -35,7 +35,7 @@ public class AddMenuFormController {
 
     @FXML
     private Button btnCancel;
-    private AddMenuModel addMenuModel = new AddMenuModel();
+
     //FoodDAOImpl foodDAO = new FoodDAOImpl();
     FoodBO foodBO = (FoodBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.FOOD);
     @FXML

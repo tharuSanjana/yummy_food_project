@@ -16,8 +16,6 @@ import lk.ijse.yummy_food_project.bo.Custom.CustomerBO;
 import lk.ijse.yummy_food_project.bo.Custom.EmployeeBO;
 import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.EmployeeDto;
-import lk.ijse.yummy_food_project.model.CustomerModel;
-import lk.ijse.yummy_food_project.model.EmployeeModel;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -45,8 +43,7 @@ public class UpdateEmployeeFormController {
     @FXML
     private TextField txtTy;
 
-    private EmployeeModel empModel = new EmployeeModel();
-    private CustomerModel cusModel = new CustomerModel();
+
     //CustomerDAOImpl customerDAO  = new CustomerDAOImpl();
     CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);
 

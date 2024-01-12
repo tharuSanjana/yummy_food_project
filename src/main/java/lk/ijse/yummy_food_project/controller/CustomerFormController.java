@@ -30,9 +30,6 @@ import lk.ijse.yummy_food_project.dto.CustomerDto;
 import lk.ijse.yummy_food_project.dto.UserDto;
 import lk.ijse.yummy_food_project.dto.tm.CustomerTm;
 import lk.ijse.yummy_food_project.entity.User;
-import lk.ijse.yummy_food_project.model.CustomerModel;
-import lk.ijse.yummy_food_project.model.EmployeeModel;
-import lk.ijse.yummy_food_project.model.LoginModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -89,9 +86,7 @@ public class CustomerFormController {
     @FXML
     private Label lblUserId;
 
-    private CustomerModel cusModel = new CustomerModel();
-    private EmployeeModel empModel = new EmployeeModel();
-    private LoginModel loginModel = new LoginModel();
+
     //private UserDto userDto = new UserDto();
    // CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     CustomerBO customerBO = (CustomerBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.CUSTOMER);

@@ -25,8 +25,6 @@ import lk.ijse.yummy_food_project.DAO.Custom.Impl.OrderDetailDAOImpl;
 import lk.ijse.yummy_food_project.DAO.QueryDAO;
 import lk.ijse.yummy_food_project.dto.PlaceDto;
 import lk.ijse.yummy_food_project.dto.tm.PlaceTm;
-import lk.ijse.yummy_food_project.model.PlaceModel;
-import lk.ijse.yummy_food_project.model.PlaceOrderModel;
 
 
 public class PlaceOderFormController {
@@ -62,8 +60,7 @@ public class PlaceOderFormController {
     @FXML
 
     private Button addBtn;
-    private PlaceOrderModel plModel = new PlaceOrderModel();
-    private PlaceModel placeModel = new PlaceModel();
+
     OrderDetailDAOImpl orderDetailDAO = new OrderDetailDAOImpl();
     QueryDAO queryDAO = new QueryDAO();
 

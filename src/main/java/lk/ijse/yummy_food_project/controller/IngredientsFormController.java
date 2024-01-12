@@ -29,8 +29,6 @@ import lk.ijse.yummy_food_project.bo.Custom.IngredientsBO;
 import lk.ijse.yummy_food_project.bo.Custom.PaymentBO;
 import lk.ijse.yummy_food_project.dto.IngredientsDto;
 import lk.ijse.yummy_food_project.dto.tm.IngredientsTm;
-import lk.ijse.yummy_food_project.model.IngredientsModel;
-import lk.ijse.yummy_food_project.model.PaymentModel;
 
 public class IngredientsFormController {
     @FXML
@@ -69,9 +67,7 @@ public class IngredientsFormController {
     private Label lblPaymentId;
     @FXML
     private TableColumn<?, ?> colPId;
-    private PaymentModel pModel = new PaymentModel();
 
-    private IngredientsModel ingModel = new IngredientsModel();
     private ObservableList<IngredientsTm> obList = FXCollections.observableArrayList();
     //IngredientsDAO ingredientsDAO = new IngredientsDAOImpl();
    IngredientsBO ingredientsBO = (IngredientsBO) BoFactory.boFactory().getBoTypes(BoFactory.BOTypes.INGREDIENTS);
@@ -179,7 +175,7 @@ public class IngredientsFormController {
         return paymentId;
     }
     private void loadAllIngredients(){
-        var model = new IngredientsModel();
+       // var model = new IngredientsModel();
 
         ObservableList<IngredientsDto> obList = FXCollections.observableArrayList();
 
